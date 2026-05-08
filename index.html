@@ -2288,6 +2288,255 @@
       font-size: 12px;
       color: var(--color-text-muted);
       letter-spacing: 0.04em;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* Abas do conversor */
+    .converter__tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: var(--space-10);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .converter__tab {
+      flex: 1;
+      padding: var(--space-4) var(--space-5);
+      background: transparent;
+      color: var(--color-text-muted);
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 11.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      cursor: pointer;
+      transition: color 0.4s ease, border-color 0.4s ease;
+      margin-bottom: -1px;
+    }
+
+    .converter__tab:hover {
+      color: var(--color-gold);
+    }
+
+    .converter__tab.is-active {
+      color: var(--color-gold);
+      border-bottom-color: var(--color-gold);
+    }
+
+    .converter__panel {
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+
+    .converter__panel.is-active {
+      display: block;
+    }
+
+    .converter__panel[hidden] {
+      display: none !important;
+    }
+
+    /* Presets (valores rápidos) */
+    .converter__presets {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-8);
+      justify-content: center;
+    }
+
+    .converter__preset {
+      padding: 9px 18px;
+      border: 1px solid var(--color-hairline);
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .converter__preset::before {
+      content: '$';
+      margin-right: 5px;
+      color: var(--color-gold);
+      opacity: 0.65;
+    }
+
+    .converter__preset:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+      background: rgba(200, 162, 76, 0.05);
+    }
+
+    .converter__preset:hover::before {
+      opacity: 1;
+    }
+
+    /* Simulador de Importação */
+    .simulator {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      margin-bottom: var(--space-8);
+    }
+
+    .simulator__group {
+      margin-bottom: var(--space-8);
+    }
+
+    .simulator__group:last-child {
+      margin-bottom: 0;
+    }
+
+    .simulator__group-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .simulator__field {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+      gap: var(--space-4);
+    }
+
+    .simulator__field:last-child {
+      margin-bottom: 0;
+    }
+
+    .simulator__field label {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .simulator__field input {
+      width: 140px;
+      height: 44px;
+      padding: 8px 14px;
+      border-radius: 2px;
+      border: 1px solid var(--color-hairline-soft);
+      background: rgba(3, 10, 22, 0.55);
+      color: var(--color-offwhite);
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      transition: border 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .simulator__field input:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      background: rgba(3, 10, 22, 0.75);
+      box-shadow: 0 0 0 3px rgba(200, 162, 76, 0.10);
+    }
+
+    .simulator__field input[type="number"] {
+      width: 110px;
+      -moz-appearance: textfield;
+    }
+
+    .simulator__field input[type="number"]::-webkit-outer-spin-button,
+    .simulator__field input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .simulator__output {
+      background: rgba(3, 10, 22, 0.4);
+      border: 1px solid var(--color-hairline);
+      border-radius: 2px;
+      padding: var(--space-8);
+      align-self: start;
+      position: sticky;
+      top: 130px;
+    }
+
+    .simulator__total {
+      text-align: center;
+      padding-bottom: var(--space-6);
+      margin-bottom: var(--space-6);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .simulator__total-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .simulator__total-value {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 44px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--color-gold);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .simulator__breakdown-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-5);
+    }
+
+    .simulator__line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-3) 0;
+      border-bottom: 1px dashed var(--color-hairline-soft);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 13.5px;
+      color: var(--color-text-secondary);
+      gap: var(--space-3);
+    }
+
+    .simulator__line:last-child {
+      border-bottom: 0;
+    }
+
+    .simulator__line span:last-child {
+      color: var(--color-offwhite);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 16px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
 
     /* ============================================
@@ -2843,6 +3092,168 @@
     }
 
     /* ============================================
+     REFINAMENTO VISUAL - FUNDOS E IMAGENS
+     ============================================ */
+    body {
+      background:
+        radial-gradient(circle at 14% 8%, rgba(200, 162, 76, 0.11) 0%, rgba(200, 162, 76, 0.00) 28%),
+        radial-gradient(circle at 86% 18%, rgba(73, 117, 151, 0.18) 0%, rgba(73, 117, 151, 0.00) 30%),
+        linear-gradient(145deg, #020812 0%, #071827 42%, #0E1F31 100%);
+      background-attachment: fixed;
+    }
+
+    .section {
+      isolation: isolate;
+    }
+
+    .section--alt,
+    .section--deep,
+    .instagram-only-section,
+    .footer {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(200, 162, 76, 0.075) 0%, transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(112, 148, 174, 0.10) 0%, transparent 32%),
+        linear-gradient(180deg, rgba(4, 13, 25, 0.82) 0%, rgba(8, 24, 39, 0.94) 100%);
+    }
+
+    .section--alt {
+      box-shadow: inset 0 1px 0 rgba(232, 220, 196, 0.05), inset 0 -1px 0 rgba(232, 220, 196, 0.04);
+    }
+
+    .hero {
+      background:
+        linear-gradient(180deg, rgba(2, 8, 18, 0.42) 0%, rgba(2, 8, 18, 0.70) 58%, rgba(2, 8, 18, 0.96) 100%),
+        linear-gradient(105deg, rgba(2, 8, 18, 0.92) 0%, rgba(7, 24, 39, 0.60) 42%, rgba(2, 8, 18, 0.30) 74%, rgba(2, 8, 18, 0.82) 100%),
+        url("images/hero-import-cinematic.jpg") center/cover no-repeat,
+        #020812;
+    }
+
+    .hero::before {
+      right: -8vw;
+      width: min(720px, 52vw);
+      height: min(720px, 52vw);
+      background:
+        radial-gradient(circle, rgba(229, 201, 122, 0.16) 0%, rgba(229, 201, 122, 0.05) 32%, transparent 66%);
+      filter: blur(6px);
+    }
+
+    .hero__bg {
+      background-image:
+        linear-gradient(90deg, rgba(232, 220, 196, 0.055) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(232, 220, 196, 0.035) 1px, transparent 1px),
+        radial-gradient(circle at 22% 30%, rgba(200, 162, 76, 0.12) 0%, transparent 34%),
+        radial-gradient(circle at 72% 62%, rgba(88, 128, 150, 0.12) 0%, transparent 38%);
+      background-size: 72px 72px, 72px 72px, auto, auto;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.18));
+    }
+
+    .hero__credentials,
+    .service-card,
+    .about-block,
+    .converter,
+    .form,
+    .content-card,
+    .case,
+    .segment-card {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.025) 38%, rgba(3, 10, 22, 0.34) 100%);
+      border-color: rgba(232, 220, 196, 0.12);
+      box-shadow: 0 18px 46px -30px rgba(0, 0, 0, 0.78), inset 0 1px 0 rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(14px) saturate(120%);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+    }
+
+    .service-card::before,
+    .about-block::before,
+    .converter::before {
+      background: linear-gradient(90deg, transparent, rgba(229, 201, 122, 0.82), transparent);
+    }
+
+    .mission {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(200, 162, 76, 0.10), transparent 32%),
+        linear-gradient(180deg, rgba(3, 10, 22, 0.90) 0%, rgba(6, 18, 31, 0.98) 100%);
+    }
+
+    .mission__goal {
+      background:
+        linear-gradient(135deg, rgba(200, 162, 76, 0.10), rgba(255, 255, 255, 0.025));
+      border-color: rgba(229, 201, 122, 0.44);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 20px 48px -34px rgba(0, 0, 0, 0.85);
+    }
+
+    #empresas::before {
+      opacity: 0.24;
+      filter: saturate(0.78) contrast(1.08) brightness(0.74);
+      transform: scale(1.04);
+    }
+
+    #empresas::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(3, 10, 22, 0.90) 0%, rgba(6, 20, 37, 0.70) 48%, rgba(3, 10, 22, 0.94) 100%),
+        radial-gradient(circle at 78% 22%, rgba(200, 162, 76, 0.10), transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #segmentos {
+      background:
+        linear-gradient(180deg, rgba(3, 10, 22, 0.86) 0%, rgba(8, 24, 39, 0.74) 48%, rgba(3, 10, 22, 0.94) 100%),
+        url("images/sectors-logistics-bg.jpg") center/cover no-repeat;
+    }
+
+    #segmentos::before {
+      background:
+        radial-gradient(circle at 20% 18%, rgba(229, 201, 122, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 82% 70%, rgba(98, 135, 159, 0.15) 0%, transparent 34%),
+        linear-gradient(90deg, rgba(3, 10, 22, 0.94) 0%, rgba(3, 10, 22, 0.46) 50%, rgba(3, 10, 22, 0.92) 100%);
+    }
+
+    .about__media {
+      aspect-ratio: 16 / 8.4;
+      background:
+        linear-gradient(135deg, rgba(200, 162, 76, 0.12), rgba(255, 255, 255, 0.03)),
+        #061425;
+      border-color: rgba(232, 220, 196, 0.14);
+      box-shadow: 0 28px 70px -34px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .about__media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 42%, rgba(3, 10, 22, 0.62) 100%),
+        linear-gradient(90deg, rgba(3, 10, 22, 0.34) 0%, transparent 42%);
+      pointer-events: none;
+    }
+
+    .about__media img {
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.72) contrast(1.08) brightness(0.82);
+      transform: scale(1.015);
+    }
+
+    .about__media-badge {
+      z-index: 1;
+      background: rgba(3, 10, 22, 0.56);
+      border-color: rgba(232, 220, 196, 0.16);
+    }
+
+    .form__input,
+    .form__select,
+    .form__textarea,
+    .converter__input,
+    .converter__select {
+      background-color: rgba(2, 8, 18, 0.42);
+      border-color: rgba(232, 220, 196, 0.12);
+    }
+
+    /* ============================================
      RESPONSIVE — TABLET
      ============================================ */
     @media (max-width: 1024px) {
@@ -2891,6 +3302,15 @@
 
       .converter {
         padding: var(--space-10) var(--space-8);
+      }
+
+      .simulator {
+        grid-template-columns: 1fr;
+        gap: var(--space-10);
+      }
+
+      .simulator__output {
+        position: static;
       }
 
       .converter__row {
@@ -3178,6 +3598,58 @@
         padding: var(--space-8) var(--space-5);
       }
 
+      .converter__tabs {
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 0;
+        margin-bottom: var(--space-8);
+      }
+
+      .converter__tab {
+        text-align: center;
+        padding: var(--space-3) var(--space-4);
+        border-bottom: 1px solid var(--color-hairline);
+        margin-bottom: 0;
+      }
+
+      .converter__tab.is-active {
+        border-bottom-color: var(--color-gold);
+      }
+
+      .converter__presets {
+        gap: var(--space-2);
+      }
+
+      .converter__preset {
+        flex: 1 1 calc(50% - var(--space-2));
+        text-align: center;
+        padding: 8px 4px;
+      }
+
+      .simulator__field {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-2);
+      }
+
+      .simulator__field input,
+      .simulator__field input[type="number"] {
+        width: 100%;
+        text-align: left;
+      }
+
+      .simulator__field label {
+        font-size: 13px;
+      }
+
+      .simulator__output {
+        padding: var(--space-6) var(--space-5);
+      }
+
+      .simulator__total-value {
+        font-size: 36px;
+      }
+
       .converter__row {
         grid-template-columns: 1fr;
         margin-bottom: var(--space-8);
@@ -3406,6 +3878,7 @@
           <li><a href="#metodo" class="navbar__link">Como Funciona</a></li>
           <li><a href="#sobre" class="navbar__link">Sobre Nós</a></li>
           <li><a href="#segmentos" class="navbar__link">Segmentos</a></li>
+          <li><a href="#cambio" class="navbar__link">Câmbio</a></li>
           <li class="nav-item--hidden" hidden aria-hidden="true"><a href="#conteudos" class="navbar__link">Conteúdos</a>
           </li>
           <li><a href="#contato" class="navbar__link">Contato</a></li>
@@ -3500,55 +3973,167 @@
         </div>
 
         <div class="converter reveal">
-          <form class="converter__form" id="converterForm" novalidate aria-label="Conversor de câmbio">
-            <div class="converter__row">
-              <div class="converter__field converter__field--amount">
-                <label class="converter__label" for="conv-amount">Valor</label>
-                <input class="converter__input" type="text" id="conv-amount" inputmode="decimal" value="1.000,00"
-                  autocomplete="off" aria-describedby="convResult" />
+          <div class="converter__tabs" role="tablist" aria-label="Modos da calculadora">
+            <button type="button" class="converter__tab is-active" role="tab" id="convTab-convert"
+              aria-selected="true" aria-controls="convPanel-convert" data-conv-tab="convert">
+              Conversão
+            </button>
+            <button type="button" class="converter__tab" role="tab" id="convTab-simulate" aria-selected="false"
+              aria-controls="convPanel-simulate" data-conv-tab="simulate">
+              Simulação de Importação
+            </button>
+          </div>
+
+          <!-- Painel: Conversão Rápida -->
+          <div class="converter__panel is-active" id="convPanel-convert" role="tabpanel"
+            aria-labelledby="convTab-convert" data-conv-panel="convert">
+            <form class="converter__form" id="converterForm" novalidate aria-label="Conversor de câmbio">
+              <div class="converter__row">
+                <div class="converter__field converter__field--amount">
+                  <label class="converter__label" for="conv-amount">Valor</label>
+                  <input class="converter__input" type="text" id="conv-amount" inputmode="decimal" value="1.000,00"
+                    autocomplete="off" aria-describedby="convResult" />
+                </div>
+
+                <div class="converter__field">
+                  <label class="converter__label" for="conv-from">De</label>
+                  <select class="converter__select" id="conv-from">
+                    <option value="USD" selected>USD — Dólar</option>
+                    <option value="CNY">CNY — Yuan</option>
+                    <option value="BRL">BRL — Real</option>
+                  </select>
+                </div>
+
+                <button type="button" class="converter__swap" id="convSwap" aria-label="Inverter moedas">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 3 L3 7 L7 11" />
+                    <path d="M3 7 H17" />
+                    <path d="M17 21 L21 17 L17 13" />
+                    <path d="M21 17 H7" />
+                  </svg>
+                </button>
+
+                <div class="converter__field">
+                  <label class="converter__label" for="conv-to">Para</label>
+                  <select class="converter__select" id="conv-to">
+                    <option value="USD">USD — Dólar</option>
+                    <option value="CNY">CNY — Yuan</option>
+                    <option value="BRL" selected>BRL — Real</option>
+                  </select>
+                </div>
               </div>
 
-              <div class="converter__field">
-                <label class="converter__label" for="conv-from">De</label>
-                <select class="converter__select" id="conv-from">
-                  <option value="USD" selected>USD — Dólar</option>
-                  <option value="CNY">CNY — Yuan</option>
-                  <option value="BRL">BRL — Real</option>
-                </select>
+              <div class="converter__presets" role="group" aria-label="Valores rápidos">
+                <button type="button" class="converter__preset" data-preset="1000">1.000</button>
+                <button type="button" class="converter__preset" data-preset="10000">10.000</button>
+                <button type="button" class="converter__preset" data-preset="50000">50.000</button>
+                <button type="button" class="converter__preset" data-preset="100000">100.000</button>
               </div>
 
-              <button type="button" class="converter__swap" id="convSwap" aria-label="Inverter moedas">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                  stroke-linejoin="round" aria-hidden="true">
-                  <path d="M7 3 L3 7 L7 11" />
-                  <path d="M3 7 H17" />
-                  <path d="M17 21 L21 17 L17 13" />
-                  <path d="M21 17 H7" />
-                </svg>
-              </button>
+              <div class="converter__result" aria-live="polite">
+                <span class="converter__result-label">Resultado</span>
+                <div class="converter__result-value" id="convResult">R$ —</div>
+                <div class="converter__rate" id="convRate">Aguardando cotação em tempo real…</div>
+              </div>
+            </form>
 
-              <div class="converter__field">
-                <label class="converter__label" for="conv-to">Para</label>
-                <select class="converter__select" id="conv-to">
-                  <option value="USD">USD — Dólar</option>
-                  <option value="CNY">CNY — Yuan</option>
-                  <option value="BRL" selected>BRL — Real</option>
-                </select>
+            <div class="converter__footer">
+              <a href="#contato" class="btn btn--primary">Simular minha importação <span class="arrow"
+                  aria-hidden="true">→</span></a>
+              <p class="converter__disclaimer">Cotações de referência via AwesomeAPI · valores indicativos, não
+                vinculantes</p>
+            </div>
+          </div>
+
+          <!-- Painel: Simulação de Importação -->
+          <div class="converter__panel" id="convPanel-simulate" role="tabpanel"
+            aria-labelledby="convTab-simulate" data-conv-panel="simulate" hidden>
+            <div class="simulator" id="simulator">
+              <div class="simulator__inputs">
+                <div class="simulator__group">
+                  <h4 class="simulator__group-title">Operação</h4>
+                  <div class="simulator__field">
+                    <label for="sim-fob">Valor FOB (USD)</label>
+                    <input type="text" id="sim-fob" value="10.000,00" inputmode="decimal" autocomplete="off" />
+                  </div>
+                  <div class="simulator__field">
+                    <label for="sim-freight">Frete + Seguro (USD)</label>
+                    <input type="text" id="sim-freight" value="1.500,00" inputmode="decimal" autocomplete="off" />
+                  </div>
+                  <div class="simulator__field">
+                    <label for="sim-rate">Câmbio USD / BRL</label>
+                    <input type="text" id="sim-rate" value="5,2000" inputmode="decimal" autocomplete="off" />
+                  </div>
+                </div>
+
+                <div class="simulator__group">
+                  <h4 class="simulator__group-title">Tributação</h4>
+                  <div class="simulator__field">
+                    <label for="sim-ii">Imposto de Importação (%)</label>
+                    <input type="number" id="sim-ii" value="16" min="0" max="100" step="0.1" />
+                  </div>
+                  <div class="simulator__field">
+                    <label for="sim-ipi">IPI (%)</label>
+                    <input type="number" id="sim-ipi" value="10" min="0" max="100" step="0.1" />
+                  </div>
+                  <div class="simulator__field">
+                    <label for="sim-icms">ICMS (%)</label>
+                    <input type="number" id="sim-icms" value="18" min="0" max="100" step="0.1" />
+                  </div>
+                </div>
+
+                <div class="simulator__group">
+                  <h4 class="simulator__group-title">Despesas Locais</h4>
+                  <div class="simulator__field">
+                    <label for="sim-expenses">Despachante, armazenagem (R$)</label>
+                    <input type="text" id="sim-expenses" value="5.000,00" inputmode="decimal" autocomplete="off" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="simulator__output" aria-live="polite">
+                <div class="simulator__total">
+                  <span class="simulator__total-label">Custo total desembolsado</span>
+                  <div class="simulator__total-value" id="simTotal">R$ —</div>
+                </div>
+
+                <div class="simulator__breakdown">
+                  <h4 class="simulator__breakdown-title">Composição</h4>
+                  <div class="simulator__line">
+                    <span>Valor aduaneiro</span>
+                    <span id="simVA">R$ —</span>
+                  </div>
+                  <div class="simulator__line">
+                    <span>Imposto de Importação</span>
+                    <span id="simII">R$ —</span>
+                  </div>
+                  <div class="simulator__line">
+                    <span>IPI</span>
+                    <span id="simIPI">R$ —</span>
+                  </div>
+                  <div class="simulator__line">
+                    <span>PIS + COFINS</span>
+                    <span id="simPC">R$ —</span>
+                  </div>
+                  <div class="simulator__line">
+                    <span>ICMS (por dentro)</span>
+                    <span id="simICMS">R$ —</span>
+                  </div>
+                  <div class="simulator__line">
+                    <span>Despesas locais</span>
+                    <span id="simExp">R$ —</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="converter__result" aria-live="polite">
-              <span class="converter__result-label">Resultado</span>
-              <div class="converter__result-value" id="convResult">R$ —</div>
-              <div class="converter__rate" id="convRate">Aguardando cotação em tempo real…</div>
+            <div class="converter__footer">
+              <a href="#contato" class="btn btn--primary">Detalhar com um Consultor <span class="arrow"
+                  aria-hidden="true">→</span></a>
+              <p class="converter__disclaimer">PIS 2,1% · COFINS 9,65% · ICMS calculado "por dentro". Estimativa
+                simplificada — alíquotas reais variam por NCM, regime e estado de destino.</p>
             </div>
-          </form>
-
-          <div class="converter__footer">
-            <a href="#contato" class="btn btn--primary">Simular minha importação <span class="arrow"
-                aria-hidden="true">→</span></a>
-            <p class="converter__disclaimer">Cotações de referência via AwesomeAPI · valores indicativos, não
-              vinculantes</p>
           </div>
         </div>
       </div>
@@ -3812,7 +4397,7 @@
 
         <div class="about__intro about__intro--media reveal">
           <div class="about__media">
-            <img src="images/sobre.png" alt="Executivo observando porto noturno com mapa China–Brasil e logo FEIHONG"
+            <img src="images/factory-import-cinematic.jpg" alt="Centro logístico com estoque organizado para operação de importação"
               loading="lazy" />
             <div class="about__media-badge" aria-hidden="true">飞鸿</div>
           </div>
@@ -4720,6 +5305,238 @@
         });
       });
 
+      // ============================================
+      // Cotações compartilhadas (ticker + conversor)
+      // ============================================
+      var feihongRates = {
+        USDBRL: null,
+        CNYBRL: null,
+        USDCNY: null,
+        updated: null
+      };
+
+      // Helpers compartilhados (parser PT-BR / EN-US)
+      function parseAmount(raw) {
+        if (raw == null) return NaN;
+        raw = String(raw).trim();
+        if (!raw) return NaN;
+        var lastDot = raw.lastIndexOf('.');
+        var lastComma = raw.lastIndexOf(',');
+        if (lastDot >= 0 && lastComma >= 0) {
+          if (lastComma > lastDot) {
+            raw = raw.replace(/\./g, '').replace(',', '.');
+          } else {
+            raw = raw.replace(/,/g, '');
+          }
+        } else if (lastComma >= 0) {
+          raw = raw.replace(/\./g, '').replace(',', '.');
+        }
+        return parseFloat(raw);
+      }
+
+      function formatAmountPtBr(n) {
+        if (!isFinite(n)) return '—';
+        return n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function formatBRL(n) {
+        if (!isFinite(n)) return 'R$ —';
+        return 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      // Abas do conversor
+      var convTabs = document.querySelectorAll('.converter__tab');
+      var convPanels = document.querySelectorAll('.converter__panel');
+      convTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var target = tab.getAttribute('data-conv-tab');
+          convTabs.forEach(function (t) {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+          convPanels.forEach(function (p) {
+            var match = p.getAttribute('data-conv-panel') === target;
+            p.classList.toggle('is-active', match);
+            if (match) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+          });
+        });
+      });
+
+      // Conversor de câmbio
+      var convForm = document.getElementById('converterForm');
+      var convUpdate = function () { /* no-op até inicializar */ };
+      var convAmount = null;
+
+      if (convForm) {
+        convAmount = document.getElementById('conv-amount');
+        var convFrom = document.getElementById('conv-from');
+        var convTo = document.getElementById('conv-to');
+        var convResult = document.getElementById('convResult');
+        var convRate = document.getElementById('convRate');
+        var convSwap = document.getElementById('convSwap');
+
+        var CURRENCY_SYMBOLS = { USD: '$', CNY: '¥', BRL: 'R$' };
+
+        function getRate(from, to) {
+          if (from === to) return 1;
+          var r = feihongRates;
+          if (from === 'USD' && to === 'BRL') return r.USDBRL;
+          if (from === 'BRL' && to === 'USD') return r.USDBRL ? (1 / r.USDBRL) : null;
+          if (from === 'CNY' && to === 'BRL') return r.CNYBRL;
+          if (from === 'BRL' && to === 'CNY') return r.CNYBRL ? (1 / r.CNYBRL) : null;
+          if (from === 'USD' && to === 'CNY') return r.USDCNY;
+          if (from === 'CNY' && to === 'USD') return r.USDCNY ? (1 / r.USDCNY) : null;
+          return null;
+        }
+
+        convUpdate = function () {
+          var amount = parseAmount(convAmount.value);
+          var from = convFrom.value;
+          var to = convTo.value;
+          var symTo = CURRENCY_SYMBOLS[to] || '';
+
+          if (!isFinite(amount) || amount < 0) {
+            convResult.textContent = symTo + ' —';
+            convRate.textContent = 'Insira um valor válido';
+            return;
+          }
+
+          var rate = getRate(from, to);
+          if (rate == null) {
+            convResult.textContent = symTo + ' —';
+            convRate.textContent = 'Aguardando cotação em tempo real…';
+            return;
+          }
+
+          var value = amount * rate;
+          convResult.textContent = symTo + ' ' + formatAmountPtBr(value);
+
+          if (from === to) {
+            convRate.textContent = 'Mesma moeda';
+            return;
+          }
+
+          var rateLabel = '1 ' + from + ' = ' + symTo + ' ' + rate.toFixed(4).replace('.', ',');
+          var ts = feihongRates.updated;
+          var tsLabel = ts ? ' · Atualizado às ' + ts.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '';
+          convRate.textContent = rateLabel + tsLabel;
+        };
+
+        convAmount.addEventListener('input', convUpdate);
+        convFrom.addEventListener('change', convUpdate);
+        convTo.addEventListener('change', convUpdate);
+
+        convSwap.addEventListener('click', function () {
+          var t = convFrom.value;
+          convFrom.value = convTo.value;
+          convTo.value = t;
+          convUpdate();
+        });
+
+        // Presets de valor
+        document.querySelectorAll('.converter__preset').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var val = parseFloat(btn.getAttribute('data-preset'));
+            if (isFinite(val)) {
+              convAmount.value = val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              convUpdate();
+            }
+          });
+        });
+
+        convUpdate();
+      }
+
+      // Simulador de Importação
+      var simRoot = document.getElementById('simulator');
+      var simSyncRate = function () { /* no-op */ };
+
+      if (simRoot) {
+        var simInputs = {
+          fob: document.getElementById('sim-fob'),
+          freight: document.getElementById('sim-freight'),
+          rate: document.getElementById('sim-rate'),
+          ii: document.getElementById('sim-ii'),
+          ipi: document.getElementById('sim-ipi'),
+          icms: document.getElementById('sim-icms'),
+          expenses: document.getElementById('sim-expenses')
+        };
+
+        var simOutputs = {
+          total: document.getElementById('simTotal'),
+          va: document.getElementById('simVA'),
+          iiVal: document.getElementById('simII'),
+          ipiVal: document.getElementById('simIPI'),
+          pc: document.getElementById('simPC'),
+          icmsVal: document.getElementById('simICMS'),
+          expVal: document.getElementById('simExp')
+        };
+
+        function simUpdate() {
+          var fob = parseAmount(simInputs.fob.value);
+          var frt = parseAmount(simInputs.freight.value);
+          var rate = parseAmount(simInputs.rate.value);
+          var iiPct = parseAmount(simInputs.ii.value);
+          var ipiPct = parseAmount(simInputs.ipi.value);
+          var icmsPct = parseAmount(simInputs.icms.value);
+          var exp = parseAmount(simInputs.expenses.value);
+
+          fob = isFinite(fob) ? fob : 0;
+          frt = isFinite(frt) ? frt : 0;
+          exp = isFinite(exp) ? exp : 0;
+          iiPct = (isFinite(iiPct) ? iiPct : 0) / 100;
+          ipiPct = (isFinite(ipiPct) ? ipiPct : 0) / 100;
+          icmsPct = (isFinite(icmsPct) ? icmsPct : 0) / 100;
+
+          var rateOk = isFinite(rate) && rate > 0;
+          var icmsOk = icmsPct < 1;
+
+          if (!rateOk || !icmsOk) {
+            Object.keys(simOutputs).forEach(function (key) {
+              simOutputs[key].textContent = 'R$ —';
+            });
+            return;
+          }
+
+          // Brazilian import calculation (simplified)
+          var va = (fob + frt) * rate;
+          var ii = va * iiPct;
+          var ipi = (va + ii) * ipiPct;
+          var pisCofins = va * 0.1175; // PIS 2.1% + COFINS 9.65%
+          var basePreICMS = va + ii + ipi + pisCofins + exp;
+          var baseICMS = basePreICMS / (1 - icmsPct);
+          var icms = baseICMS - basePreICMS;
+          var total = va + ii + ipi + pisCofins + icms + exp;
+
+          simOutputs.va.textContent = formatBRL(va);
+          simOutputs.iiVal.textContent = formatBRL(ii);
+          simOutputs.ipiVal.textContent = formatBRL(ipi);
+          simOutputs.pc.textContent = formatBRL(pisCofins);
+          simOutputs.icmsVal.textContent = formatBRL(icms);
+          simOutputs.expVal.textContent = formatBRL(exp);
+          simOutputs.total.textContent = formatBRL(total);
+        }
+
+        simSyncRate = function () {
+          if (feihongRates.USDBRL && !simInputs.rate.dataset.userEdited) {
+            simInputs.rate.value = feihongRates.USDBRL.toFixed(4).replace('.', ',');
+            simUpdate();
+          }
+        };
+
+        simInputs.rate.addEventListener('input', function () {
+          simInputs.rate.dataset.userEdited = '1';
+        });
+
+        Object.keys(simInputs).forEach(function (key) {
+          simInputs[key].addEventListener('input', simUpdate);
+        });
+
+        simUpdate();
+      }
+
       // Currency ticker (cotações: USD/BRL, CNY/BRL, USD/CNY)
       var ticker = document.getElementById('ticker');
       if (ticker) {
@@ -4760,10 +5577,18 @@
               tickerUpdateItem('USDBRL', 'R$', data.USDBRL);
               tickerUpdateItem('CNYBRL', 'R$', data.CNYBRL);
               tickerUpdateItem('USDCNY', '¥', data.USDCNY);
+
+              if (data.USDBRL && isFinite(parseFloat(data.USDBRL.bid))) feihongRates.USDBRL = parseFloat(data.USDBRL.bid);
+              if (data.CNYBRL && isFinite(parseFloat(data.CNYBRL.bid))) feihongRates.CNYBRL = parseFloat(data.CNYBRL.bid);
+              if (data.USDCNY && isFinite(parseFloat(data.USDCNY.bid))) feihongRates.USDCNY = parseFloat(data.USDCNY.bid);
+              feihongRates.updated = new Date();
+
+              convUpdate();
+              simSyncRate();
+
               var updated = document.getElementById('tickerUpdated');
               if (updated) {
-                var now = new Date();
-                updated.textContent = 'Atualizado às ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                updated.textContent = 'Atualizado às ' + feihongRates.updated.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
               }
             })
             .catch(function () { /* silent fail; mantém placeholders */ });
