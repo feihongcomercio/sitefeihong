@@ -151,6 +151,9 @@
     #feihong-container-intro {
       position: fixed;
       inset: 0;
+      width: 100vw;
+      min-height: 100vh;
+      min-height: 100svh;
       z-index: 2147483647;
       background: var(--color-navy-deep);
       display: none;
@@ -213,11 +216,41 @@
     }
 
     @media (max-width: 768px) {
+      #feihong-container-intro {
+        padding: max(16px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+          max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+        background:
+          radial-gradient(circle at 50% 18%, rgba(200, 162, 76, 0.12), transparent 34%),
+          var(--color-navy-deep);
+      }
+
+      #feihong-intro-video {
+        width: 100%;
+        height: 100%;
+        max-width: 100vw;
+        max-height: 100svh;
+        object-fit: contain;
+        object-position: center;
+      }
+
       #feihong-intro-skip {
-        right: 16px;
-        bottom: 16px;
+        right: max(16px, env(safe-area-inset-right));
+        bottom: max(16px, env(safe-area-inset-bottom));
         font-size: 11px;
         padding: 11px 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #feihong-container-intro {
+        padding: max(12px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right))
+          max(12px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+      }
+    }
+
+    @media (orientation: portrait) and (max-width: 768px) {
+      #feihong-intro-video {
+        object-fit: contain;
       }
     }
 
