@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A1F3D"/>
+      <stop offset="100%" stop-color="#081B35"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#E6C757"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.6">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- decorative gold lines -->
+  <line x1="990" y1="80" x2="1110" y2="80" stroke="url(#gold)" stroke-width="2" opacity="0.7"/>
+  <line x1="90" y1="550" x2="170" y2="550" stroke="url(#gold)" stroke-width="2" opacity="0.7"/>
+
+  <!-- eyebrow -->
+  <text x="90" y="170" font-family="Montserrat, Arial, sans-serif" font-size="22" font-weight="700" fill="#D4AF37" letter-spacing="6">CONSULTORIA ESTRATÉGICA</text>
+
+  <!-- title -->
+  <text x="90" y="270" font-family="Montserrat, Arial, sans-serif" font-size="74" font-weight="800" fill="#F5F5F0" letter-spacing="-1">FEI<tspan fill="url(#gold)">HONG</tspan></text>
+  <text x="90" y="350" font-family="Montserrat, Arial, sans-serif" font-size="48" font-weight="700" fill="#F5F5F0">Importação China–Brasil</text>
+
+  <!-- subtitle -->
+  <text x="90" y="425" font-family="Lato, Arial, sans-serif" font-size="26" fill="#C8C8BE">Reduza custos. Elimine riscos.</text>
+  <text x="90" y="463" font-family="Lato, Arial, sans-serif" font-size="26" fill="#C8C8BE">Maximize sua margem de lucro.</text>
+
+  <!-- gold divider -->
+  <line x1="90" y1="510" x2="200" y2="510" stroke="url(#gold)" stroke-width="3"/>
+
+  <!-- footer -->
+  <text x="90" y="555" font-family="Lato, Arial, sans-serif" font-size="20" fill="#A0A09A">www.feihong.com.br</text>
+
+  <!-- corner badge -->
+  <g transform="translate(990,470)">
+    <rect x="0" y="0" width="140" height="80" rx="8" fill="none" stroke="url(#gold)" stroke-width="2"/>
+    <text x="70" y="36" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="14" font-weight="700" fill="#D4AF37" letter-spacing="2">DESDE</text>
+    <text x="70" y="64" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="22" font-weight="800" fill="#F5F5F0">2017</text>
+  </g>
+</svg>

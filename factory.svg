@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600">
+  <defs>
+    <linearGradient id="fbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A1F3D"/>
+      <stop offset="100%" stop-color="#061528"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="600" fill="url(#fbg)"/>
+  <!-- distant warehouses -->
+  <g fill="#0B1E3A" opacity="0.9">
+    <polygon points="0,420 100,360 200,420 200,540 0,540"/>
+    <polygon points="180,440 280,380 380,440 380,540 180,540"/>
+    <polygon points="360,400 480,340 600,400 600,540 360,540"/>
+    <polygon points="580,420 700,360 820,420 820,540 580,540"/>
+    <polygon points="800,400 940,340 1080,400 1080,540 800,540"/>
+    <polygon points="1060,420 1180,360 1300,420 1300,540 1060,540"/>
+    <polygon points="1280,440 1400,380 1520,440 1520,540 1280,540"/>
+    <polygon points="1500,420 1600,360 1600,540 1500,540"/>
+  </g>
+  <!-- chimneys -->
+  <g fill="#0B1E3A" opacity="0.85">
+    <rect x="120" y="280" width="20" height="100"/>
+    <rect x="500" y="240" width="22" height="120"/>
+    <rect x="940" y="260" width="20" height="110"/>
+    <rect x="1320" y="280" width="20" height="100"/>
+  </g>
+  <!-- smoke/steam (subtle) -->
+  <g fill="#D4AF37" opacity="0.06">
+    <circle cx="130" cy="240" r="40"/>
+    <circle cx="155" cy="200" r="50"/>
+    <circle cx="510" cy="200" r="50"/>
+    <circle cx="540" cy="160" r="60"/>
+    <circle cx="950" cy="220" r="45"/>
+    <circle cx="1330" cy="240" r="40"/>
+  </g>
+  <!-- containers stacked at front -->
+  <g>
+    <rect x="60" y="480" width="120" height="40" fill="#8B2E2E" opacity="0.8"/>
+    <rect x="60" y="520" width="120" height="40" fill="#2E5F8B" opacity="0.8"/>
+    <rect x="200" y="500" width="120" height="40" fill="#3D7A4F" opacity="0.8"/>
+    <rect x="200" y="540" width="120" height="20" fill="#8B6B2E" opacity="0.8"/>
+    <rect x="1280" y="490" width="120" height="40" fill="#2E5F8B" opacity="0.8"/>
+    <rect x="1280" y="530" width="120" height="30" fill="#8B2E2E" opacity="0.8"/>
+    <rect x="1420" y="500" width="120" height="40" fill="#3D7A4F" opacity="0.8"/>
+    <rect x="1420" y="540" width="120" height="20" fill="#8B6B2E" opacity="0.8"/>
+  </g>
+  <!-- gold horizon line -->
+  <line x1="0" y1="445" x2="1600" y2="445" stroke="#D4AF37" stroke-width="1" opacity="0.15"/>
+</svg>
