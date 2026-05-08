@@ -153,13 +153,19 @@
       inset: 0;
       z-index: 2147483647;
       background: var(--color-navy-deep);
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    #feihong-container-intro.feihong-ready {
+      display: flex;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.9s ease, visibility 0.9s ease;
     }
 
     #feihong-container-intro.feihong-hide {
@@ -5604,12 +5610,18 @@
           }, 950);
         }
 
+        function failOpen() {
+          if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+          unlockPage();
+        }
+
         if (hasViewedIntro()) {
           if (intro.parentNode) intro.parentNode.removeChild(intro);
           unlockPage();
           return;
         }
 
+        intro.classList.add('feihong-ready');
         document.documentElement.classList.add('feihong-intro-lock');
         document.body.classList.add('feihong-intro-lock');
 
@@ -5620,10 +5632,21 @@
 
         if (video) {
           video.addEventListener('ended', closeIntro);
-          var playPromise = video.play();
-          if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(function () { setTimeout(closeIntro, 3800); });
+          video.addEventListener('error', failOpen);
+          video.addEventListener('stalled', function () { setTimeout(closeIntro, 1800); });
+          video.addEventListener('suspend', function () { setTimeout(closeIntro, 2400); });
+
+          try {
+            var playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(function () { setTimeout(closeIntro, 1200); });
+            }
+          } catch (e) {
+            setTimeout(closeIntro, 900);
           }
+        } else {
+          failOpen();
+          return;
         }
 
         if (skip) skip.addEventListener('click', closeIntro);
