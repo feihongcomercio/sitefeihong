@@ -1293,7 +1293,11 @@
       overflow: hidden;
       box-shadow: var(--shadow-lg);
       border: 1px solid rgba(212, 175, 55, 0.18);
-      background: var(--color-navy-medium);
+      background:
+        linear-gradient(180deg, transparent 42%, rgba(3, 10, 22, 0.62) 100%),
+        linear-gradient(90deg, rgba(3, 10, 22, 0.34) 0%, transparent 42%),
+        url("images/sobre.jpg") center/cover no-repeat,
+        var(--color-navy-medium);
     }
 
     .about__media img {
@@ -3215,7 +3219,10 @@
     .about__media {
       aspect-ratio: 16 / 8.4;
       background:
+        linear-gradient(180deg, transparent 42%, rgba(3, 10, 22, 0.62) 100%),
+        linear-gradient(90deg, rgba(3, 10, 22, 0.34) 0%, transparent 42%),
         linear-gradient(135deg, rgba(200, 162, 76, 0.12), rgba(255, 255, 255, 0.03)),
+        url("images/sobre.jpg") center/cover no-repeat,
         #061425;
       border-color: rgba(232, 220, 196, 0.14);
       box-shadow: 0 28px 70px -34px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -3236,6 +3243,10 @@
       object-fit: cover;
       filter: saturate(0.72) contrast(1.08) brightness(0.82);
       transform: scale(1.015);
+    }
+
+    .about__media img.is-broken {
+      display: none;
     }
 
     .about__media-badge {
@@ -4486,7 +4497,7 @@
 
         <div class="about__intro about__intro--media reveal">
           <div class="about__media">
-            <img src="images/sobre.jpg" data-fallback-srcs="./images/sobre.jpg|/images/sobre.jpg|/Site%20feihong/images/sobre.jpg" alt="Vista noturna de skyline na China"
+            <img src="images/sobre.jpg" data-fallback-srcs="./images/sobre.jpg|/images/sobre.jpg|/Site%20feihong/images/sobre.jpg|/Site feihong/images/sobre.jpg" onerror="this.classList.add('is-broken')" alt="Vista noturna de skyline na China"
               loading="lazy" />
             <div class="about__media-badge" aria-hidden="true">飞鸿</div>
           </div>
@@ -5270,7 +5281,10 @@
         ].join('|')).split('|');
         var index = 0;
         img.addEventListener('error', function () {
-          if (index >= candidates.length) return;
+          if (index >= candidates.length) {
+            img.classList.add('is-broken');
+            return;
+          }
           var next = candidates[index++];
           if (img.getAttribute('src') !== next) img.setAttribute('src', next);
         });
