@@ -4486,7 +4486,7 @@
 
         <div class="about__intro about__intro--media reveal">
           <div class="about__media">
-            <img src="images/sobre.jpg" alt="Vista noturna de skyline na China"
+            <img src="images/sobre.jpg" data-fallback-srcs="./images/sobre.jpg|/images/sobre.jpg|/Site%20feihong/images/sobre.jpg" alt="Vista noturna de skyline na China"
               loading="lazy" />
             <div class="about__media-badge" aria-hidden="true">飞鸿</div>
           </div>
@@ -5257,6 +5257,24 @@
   <script>
     (function () {
       'use strict';
+
+      // Fallback para quando o site for aberto por um servidor cuja raiz esteja na pasta pai.
+      document.querySelectorAll('img[src^="images/"]').forEach(function (img) {
+        var original = img.getAttribute('src');
+        var file = original.replace(/^images\//, '');
+        var candidates = (img.getAttribute('data-fallback-srcs') || [
+          './images/' + file,
+          '/images/' + file,
+          '/Site%20feihong/images/' + file,
+          '/Site feihong/images/' + file
+        ].join('|')).split('|');
+        var index = 0;
+        img.addEventListener('error', function () {
+          if (index >= candidates.length) return;
+          var next = candidates[index++];
+          if (img.getAttribute('src') !== next) img.setAttribute('src', next);
+        });
+      });
 
       // Navbar scroll behavior
       var navbar = document.getElementById('navbar');
