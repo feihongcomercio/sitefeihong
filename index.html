@@ -5612,6 +5612,10 @@
         var skip = document.getElementById('feihong-intro-skip');
         var closing = false;
         var storageKey = 'feihongIntroViewed';
+        var isMobileIntro = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+        var introStartedAt = Date.now();
+        var minimumIntroMs = isMobileIntro ? 6800 : 4200;
+        var maximumIntroMs = isMobileIntro ? 11000 : 7200;
 
         function hasViewedIntro() {
           try {
@@ -5632,8 +5636,16 @@
           document.body.classList.remove('feihong-intro-lock');
         }
 
-        function closeIntro() {
+        function closeIntro(options) {
+          options = options || {};
           if (closing) return;
+
+          var elapsed = Date.now() - introStartedAt;
+          if (!options.force && elapsed < minimumIntroMs) {
+            setTimeout(function () { closeIntro(options); }, minimumIntroMs - elapsed);
+            return;
+          }
+
           closing = true;
           markViewedIntro();
           intro.classList.add('feihong-hide');
@@ -5664,26 +5676,26 @@
         }
 
         if (video) {
-          video.addEventListener('ended', closeIntro);
+          video.addEventListener('ended', function () { closeIntro(); });
           video.addEventListener('error', failOpen);
-          video.addEventListener('stalled', function () { setTimeout(closeIntro, 1800); });
-          video.addEventListener('suspend', function () { setTimeout(closeIntro, 2400); });
 
           try {
             var playPromise = video.play();
             if (playPromise && typeof playPromise.catch === 'function') {
-              playPromise.catch(function () { setTimeout(closeIntro, 1200); });
+              playPromise.catch(function () {
+                setTimeout(function () { closeIntro(); }, minimumIntroMs);
+              });
             }
           } catch (e) {
-            setTimeout(closeIntro, 900);
+            setTimeout(function () { closeIntro(); }, minimumIntroMs);
           }
         } else {
           failOpen();
           return;
         }
 
-        if (skip) skip.addEventListener('click', closeIntro);
-        setTimeout(closeIntro, 5600);
+        if (skip) skip.addEventListener('click', function () { closeIntro({ force: true }); });
+        setTimeout(function () { closeIntro({ force: true }); }, maximumIntroMs);
       }
 
       initFeihongIntro();
