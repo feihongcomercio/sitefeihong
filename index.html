@@ -70,7 +70,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -78,17 +78,20 @@
      DESIGN TOKENS
      ============================================ */
     :root {
-      /* Cores Principais */
-      --color-navy-deep: #050F1F;
-      --color-navy-dark: #081B35;
-      --color-navy-medium: #0F2747;
-      --color-navy-soft: #1A3358;
-      --color-gold: #D4AF37;
-      --color-gold-light: #F2C94C;
-      --color-gold-shadow: #A8862A;
-      --color-offwhite: #F5F5F5;
-      --color-text-secondary: #B8C5D6;
-      --color-text-muted: #7A8AA1;
+      /* Cores Principais — paleta refinada para tom executivo */
+      --color-navy-deep: #030A16;
+      --color-navy-dark: #061425;
+      --color-navy-medium: #0B2038;
+      --color-navy-soft: #142B47;
+      --color-gold: #C8A24C;
+      --color-gold-light: #E5C97A;
+      --color-gold-shadow: #8E7129;
+      --color-champagne: #E8DCC4;
+      --color-offwhite: #F4EFE6;
+      --color-text-secondary: #C2CCDB;
+      --color-text-muted: #8997AC;
+      --color-hairline: rgba(200, 162, 76, 0.18);
+      --color-hairline-soft: rgba(232, 220, 196, 0.10);
 
       /* Estados */
       --color-success: #2ECC71;
@@ -97,7 +100,8 @@
       --color-info: #56A9F2;
       --color-whatsapp: #25D366;
 
-      /* Tipografia */
+      /* Tipografia — sistema editorial */
+      --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
       --font-heading: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
       --font-body: 'Lato', 'Open Sans', 'Segoe UI', sans-serif;
 
@@ -249,38 +253,98 @@
      TIPOGRAFIA — utilitários
      ============================================ */
     .eyebrow {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.15em;
+      font-weight: 500;
+      font-size: 11.5px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--color-gold);
       line-height: 1.4;
-      margin-bottom: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--color-gold);
+      opacity: 0.7;
+    }
+
+    .section__header .eyebrow,
+    .mission .eyebrow {
+      justify-content: center;
+    }
+
+    .section__header .eyebrow::after,
+    .mission .eyebrow::after {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--color-gold);
+      opacity: 0.7;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       padding: 6px 16px;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(200, 162, 76, 0.08);
+      border: 1px solid var(--color-hairline);
       border-radius: var(--radius-sm);
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: 500;
+      font-size: 11.5px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.24em;
       color: var(--color-gold);
     }
 
     .divider-gold {
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+      width: 56px;
+      height: 1px;
+      background: var(--color-gold);
+      opacity: 0.55;
       margin: var(--space-6) auto;
       border: 0;
+    }
+
+    .divider-gold--ornament {
+      width: 120px;
+      height: 14px;
+      margin: var(--space-6) auto;
+      border: 0;
+      background: none;
+      position: relative;
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .divider-gold--ornament::before,
+    .divider-gold--ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold) 60%, var(--color-gold));
+      opacity: 0.6;
+    }
+
+    .divider-gold--ornament::after {
+      background: linear-gradient(90deg, var(--color-gold), var(--color-gold) 40%, transparent);
+    }
+
+    .divider-gold--ornament span {
+      width: 6px;
+      height: 6px;
+      margin: 0 12px;
+      background: var(--color-gold);
+      transform: rotate(45deg);
+      display: inline-block;
     }
 
     /* ============================================
@@ -290,50 +354,55 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 16px;
+      font-weight: 600;
+      font-size: 13px;
       line-height: 1;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      padding: 16px 32px;
-      border-radius: var(--radius-sm);
-      transition: all 0.3s ease;
-      min-height: 48px;
+      padding: 18px 32px;
+      border-radius: 2px;
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      min-height: 50px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn--lg {
-      padding: 20px 40px;
+      padding: 22px 44px;
+      font-size: 13.5px;
     }
 
     .btn--primary {
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
-      color: var(--color-navy-dark);
-      box-shadow: var(--shadow-gold);
+      background: var(--color-gold);
+      color: var(--color-navy-deep);
+      border: 1px solid var(--color-gold);
+      box-shadow: 0 8px 24px -10px rgba(200, 162, 76, 0.55);
     }
 
     .btn--primary:hover {
-      background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 100%);
-      box-shadow: var(--shadow-gold-hover);
+      background: var(--color-gold-light);
+      border-color: var(--color-gold-light);
+      box-shadow: 0 12px 32px -10px rgba(229, 201, 122, 0.65);
       transform: translateY(-2px);
-      color: var(--color-navy-dark);
+      color: var(--color-navy-deep);
     }
 
     .btn--primary:active {
       transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+      box-shadow: 0 2px 8px rgba(200, 162, 76, 0.2);
     }
 
     .btn--secondary {
       background: transparent;
       color: var(--color-gold);
-      border: 2px solid var(--color-gold);
+      border: 1px solid var(--color-gold);
     }
 
     .btn--secondary:hover {
-      background: rgba(212, 175, 55, 0.1);
+      background: rgba(200, 162, 76, 0.08);
       color: var(--color-gold-light);
       border-color: var(--color-gold-light);
     }
@@ -341,23 +410,28 @@
     .btn--ghost {
       background: transparent;
       color: var(--color-gold);
-      padding: 8px 0;
-      text-transform: none;
-      font-size: 15px;
-      letter-spacing: 0;
+      padding: 14px 0;
+      min-height: auto;
+      text-transform: uppercase;
+      font-size: 11.5px;
+      letter-spacing: 0.24em;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      border-radius: 0;
     }
 
     .btn--ghost .arrow {
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
       display: inline-block;
     }
 
     .btn--ghost:hover {
       color: var(--color-gold-light);
+      border-bottom-color: var(--color-gold-light);
     }
 
     .btn--ghost:hover .arrow {
-      transform: translateX(4px);
+      transform: translateX(6px);
     }
 
     .btn--whatsapp {
@@ -381,19 +455,19 @@
       top: var(--ticker-h);
       left: 0;
       right: 0;
-      height: 88px;
-      background: rgba(8, 27, 53, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      height: 92px;
+      background: rgba(6, 20, 37, 0.82);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      border-bottom: 1px solid var(--color-hairline);
       z-index: 1000;
-      transition: background 0.3s ease, height 0.3s ease;
+      transition: background 0.4s ease, height 0.4s ease, border-color 0.4s ease;
     }
 
     .navbar.scrolled {
-      background: var(--color-navy-dark);
-      box-shadow: var(--shadow-lg);
-      height: 72px;
+      background: rgba(6, 20, 37, 0.96);
+      box-shadow: 0 1px 0 var(--color-hairline), 0 16px 40px -20px rgba(0, 0, 0, 0.7);
+      height: 76px;
     }
 
     .navbar__inner {
@@ -441,27 +515,29 @@
     }
 
     .navbar__link {
-      font-family: var(--font-body);
-      font-weight: 400;
-      font-size: 14px;
-      letter-spacing: 0.05em;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(245, 245, 240, 0.85);
-      padding: 6px 0;
+      color: rgba(244, 239, 230, 0.78);
+      padding: 8px 4px;
       position: relative;
       white-space: nowrap;
-      transition: color 0.3s ease;
+      transition: color 0.4s ease;
     }
 
     .navbar__link::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: 2px;
+      left: 4px;
+      right: 4px;
       width: 0;
-      height: 2px;
+      height: 1px;
       background: var(--color-gold);
-      transition: width 0.3s ease;
+      transition: width 0.4s ease;
+      margin: 0 auto;
     }
 
     .navbar__link:hover {
@@ -469,14 +545,16 @@
     }
 
     .navbar__link:hover::after {
-      width: 100%;
+      width: calc(100% - 8px);
     }
 
     .navbar__cta {
-      padding: 12px 14px;
-      min-height: 44px;
-      font-size: 11.5px;
+      padding: 14px 22px;
+      min-height: 46px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
       white-space: nowrap;
+      margin-left: var(--space-2);
     }
 
     .navbar__toggle {
@@ -547,13 +625,14 @@
       left: 0;
       right: 0;
       height: var(--ticker-h);
-      background: linear-gradient(90deg, var(--color-navy-deep), var(--color-navy-medium) 50%, var(--color-navy-deep));
-      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      background: var(--color-navy-deep);
+      border-bottom: 1px solid var(--color-hairline);
       z-index: 1001;
       display: flex;
       align-items: center;
       font-family: var(--font-body);
-      font-size: 13px;
+      font-weight: 300;
+      font-size: 12.5px;
       color: var(--color-text-secondary);
     }
 
@@ -583,9 +662,10 @@
 
     .ticker__label {
       color: var(--color-gold);
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 0.1em;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
@@ -622,11 +702,12 @@
      ============================================ */
     .hero {
       position: relative;
-      padding: 200px var(--container-padding-desktop) var(--space-32);
+      padding: 220px var(--container-padding-desktop) var(--space-32);
       background:
-        linear-gradient(135deg, rgba(8, 27, 53, 0.88) 0%, rgba(8, 27, 53, 0.78) 60%, rgba(8, 27, 53, 0.92) 100%),
+        linear-gradient(180deg, rgba(3, 10, 22, 0.55) 0%, rgba(3, 10, 22, 0.78) 55%, rgba(3, 10, 22, 0.95) 100%),
+        linear-gradient(120deg, rgba(6, 20, 37, 0.78) 0%, rgba(6, 20, 37, 0.45) 55%, rgba(6, 20, 37, 0.85) 100%),
         url("images/hero-import-cinematic.jpg") center/cover no-repeat,
-        var(--color-navy-dark);
+        var(--color-navy-deep);
       overflow: hidden;
       min-height: 100vh;
       display: flex;
@@ -636,31 +717,37 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: 80px;
-      right: 40px;
-      width: 120px;
-      height: 2px;
-      background: linear-gradient(135deg, transparent, var(--color-gold), transparent);
-      transform: rotate(45deg);
-      transform-origin: right;
+      top: 50%;
+      right: -160px;
+      width: 520px;
+      height: 520px;
+      transform: translateY(-50%);
+      background: radial-gradient(circle, rgba(200, 162, 76, 0.10) 0%, transparent 60%);
+      pointer-events: none;
     }
 
     .hero::after {
-      content: '';
+      content: '飞鸿';
       position: absolute;
-      bottom: 100px;
-      left: 40px;
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(135deg, transparent, var(--color-gold), transparent);
-      transform: rotate(-45deg);
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 280px;
+      line-height: 1;
+      color: var(--color-gold);
+      opacity: 0.06;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      user-select: none;
     }
 
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 35%),
-        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 35%);
+      background-image: radial-gradient(circle at 18% 28%, rgba(200, 162, 76, 0.08) 0%, transparent 38%),
+        radial-gradient(circle at 82% 72%, rgba(232, 220, 196, 0.04) 0%, transparent 40%);
       pointer-events: none;
     }
 
@@ -673,40 +760,78 @@
     }
 
     .hero__content {
-      max-width: 880px;
+      max-width: 920px;
     }
 
     .hero h1 {
-      font-weight: 800;
-      font-size: 64px;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 72px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
       color: var(--color-offwhite);
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-8);
     }
 
     .hero h1 .highlight {
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--color-gold);
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
     }
 
     .hero__subtext {
       font-family: var(--font-body);
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 1.6;
+      font-weight: 300;
+      font-size: 19px;
+      line-height: 1.7;
       color: var(--color-text-secondary);
       margin-bottom: var(--space-12);
-      max-width: 720px;
+      max-width: 640px;
     }
 
     .hero__ctas {
       display: flex;
-      gap: var(--space-4);
+      gap: var(--space-6);
       flex-wrap: wrap;
       align-items: center;
+    }
+
+    .hero__credentials {
+      display: flex;
+      gap: var(--space-8);
+      align-items: center;
+      margin-top: var(--space-16);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--color-hairline);
+      max-width: 720px;
+      flex-wrap: wrap;
+    }
+
+    .hero__credential {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero__credential-value {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--color-gold);
+      letter-spacing: -0.01em;
+    }
+
+    .hero__credential-label {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
     }
 
     /* ============================================
@@ -715,59 +840,82 @@
     .stats {
       background: var(--color-navy-medium);
       padding: var(--space-20) 0;
-      border-top: 1px solid rgba(212, 175, 55, 0.1);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      border-top: 1px solid var(--color-hairline);
+      border-bottom: 1px solid var(--color-hairline);
+      position: relative;
     }
+
+    .stats::before,
+    .stats::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+      opacity: 0.25;
+    }
+
+    .stats::before { top: 0; }
+    .stats::after { bottom: 0; }
 
     .stats__grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-8);
+      gap: 0;
     }
 
     .stat-card {
       text-align: center;
       padding: var(--space-8) var(--space-6);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: var(--radius-md);
-      transition: all 0.3s ease;
+      border: 0;
+      border-right: 1px solid var(--color-hairline);
+      border-radius: 0;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .stat-card:last-child {
+      border-right: 0;
     }
 
     .stat-card:hover {
-      border-color: rgba(212, 175, 55, 0.5);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .stat-card:hover .stat-card__value {
+      color: var(--color-gold-light);
     }
 
     .stat-card__value {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 56px;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 64px;
       line-height: 1;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      letter-spacing: -0.02em;
+      color: var(--color-gold);
       margin-bottom: var(--space-4);
+      transition: color 0.4s ease;
     }
 
     .stat-card__divider {
-      width: 40px;
-      height: 2px;
+      width: 32px;
+      height: 1px;
       background: var(--color-gold);
+      opacity: 0.55;
       margin: var(--space-4) auto;
       border: 0;
     }
 
     .stat-card__label {
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      font-size: 11.5px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--color-offwhite);
-      line-height: 1.4;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
     }
 
     /* ============================================
@@ -798,24 +946,37 @@
       max-width: 820px;
       margin-left: auto;
       margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .section__title {
-      font-weight: 700;
-      font-size: 48px;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 56px;
+      line-height: 1.12;
+      letter-spacing: -0.005em;
       color: var(--color-offwhite);
       margin-bottom: var(--space-4);
     }
 
+    .section__title em {
+      font-style: italic;
+      color: var(--color-gold);
+      font-weight: 500;
+    }
+
     .section__subtitle {
       font-family: var(--font-body);
-      font-weight: 400;
+      font-weight: 300;
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--color-text-secondary);
       margin-top: var(--space-4);
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ============================================
@@ -829,11 +990,11 @@
 
     .service-card {
       position: relative;
-      background: var(--color-navy-medium);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: var(--radius-md);
-      padding: var(--space-8);
-      transition: all 0.3s ease;
+      background: linear-gradient(160deg, rgba(20, 43, 71, 0.55) 0%, rgba(11, 32, 56, 0.92) 100%);
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      padding: var(--space-12) var(--space-8) var(--space-8);
+      transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -843,53 +1004,74 @@
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
-      width: 60px;
-      height: 4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold) 30%, var(--color-gold) 70%, transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: var(--space-8);
+      right: var(--space-8);
+      width: 32px;
+      height: 1px;
       background: var(--color-gold);
-      transform-origin: top right;
-      transition: width 0.3s ease;
+      opacity: 0.6;
+      transition: width 0.5s ease, opacity 0.5s ease;
     }
 
     .service-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(212, 175, 55, 0.4);
-      box-shadow: 0 12px 32px rgba(5, 15, 31, 0.6);
+      border-color: rgba(200, 162, 76, 0.4);
+      box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
     }
 
     .service-card:hover::before {
-      width: 80px;
+      opacity: 1;
+    }
+
+    .service-card:hover::after {
+      width: 56px;
+      opacity: 1;
     }
 
     .service-card__icon {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       color: var(--color-gold);
       margin-bottom: var(--space-6);
+      stroke-width: 1.2;
     }
 
     .service-card__eyebrow {
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--color-gold);
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
     }
 
     .service-card__title {
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 1.3;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.25;
       color: var(--color-offwhite);
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.005em;
     }
 
     .service-card__desc {
       font-family: var(--font-body);
+      font-weight: 300;
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.7;
       color: var(--color-text-secondary);
       margin-bottom: var(--space-6);
     }
@@ -901,10 +1083,11 @@
 
     .service-card__list li {
       font-family: var(--font-body);
+      font-weight: 300;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--color-text-secondary);
-      padding-left: 28px;
+      padding-left: 26px;
       position: relative;
       margin-bottom: var(--space-3);
     }
@@ -913,12 +1096,10 @@
       content: '';
       position: absolute;
       left: 0;
-      top: 8px;
-      width: 16px;
-      height: 8px;
-      border-left: 2px solid var(--color-gold);
-      border-bottom: 2px solid var(--color-gold);
-      transform: rotate(-45deg);
+      top: 11px;
+      width: 14px;
+      height: 1px;
+      background: var(--color-gold);
     }
 
     .service-card__cta {
@@ -933,6 +1114,16 @@
       background: var(--color-navy-deep);
       position: relative;
       overflow: hidden;
+    }
+
+    .mission__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .mission .eyebrow {
+      justify-content: center;
     }
 
     .mission::before,
@@ -964,37 +1155,71 @@
     }
 
     .mission h2 {
-      font-weight: 700;
-      font-size: 48px;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 56px;
       line-height: 1.15;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.005em;
       color: var(--color-offwhite);
       margin-bottom: var(--space-6);
+      max-width: 880px;
     }
 
     .mission__text {
-      font-size: 18px;
-      line-height: 1.6;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 19px;
+      line-height: 1.75;
       color: var(--color-text-secondary);
       margin-bottom: var(--space-12);
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .mission__goal {
       display: inline-block;
       padding: var(--space-8) var(--space-12);
-      border: 2px solid var(--color-gold);
-      border-radius: var(--radius-md);
-      background: rgba(212, 175, 55, 0.05);
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 1.4;
+      border: 1px solid var(--color-gold);
+      border-radius: 2px;
+      background: rgba(200, 162, 76, 0.04);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 24px;
+      line-height: 1.45;
       color: var(--color-offwhite);
-      max-width: 720px;
+      max-width: 760px;
+      position: relative;
+    }
+
+    .mission__goal::before,
+    .mission__goal::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--color-gold);
+    }
+
+    .mission__goal::before {
+      top: -7px;
+      left: -7px;
+      border-right: 0;
+      border-bottom: 0;
+    }
+
+    .mission__goal::after {
+      bottom: -7px;
+      right: -7px;
+      border-left: 0;
+      border-top: 0;
     }
 
     .mission__goal strong {
       color: var(--color-gold);
+      font-weight: 600;
+      font-style: normal;
     }
 
     /* ============================================
@@ -1008,28 +1233,29 @@
     }
 
     .segment-card {
-      background: var(--color-navy-medium);
-      border-radius: var(--radius-md);
-      padding: var(--space-6);
+      background: rgba(11, 32, 56, 0.55);
+      border-radius: 4px;
+      padding: var(--space-5) var(--space-6);
       display: flex;
       align-items: center;
       gap: var(--space-4);
-      transition: all 0.3s ease;
-      border: 1px solid transparent;
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border: 1px solid var(--color-hairline);
     }
 
     .segment-card:hover {
-      background: var(--color-navy-soft);
-      border-color: rgba(212, 175, 55, 0.3);
+      background: rgba(20, 43, 71, 0.85);
+      border-color: rgba(200, 162, 76, 0.4);
       transform: translateY(-2px);
     }
 
     .segment-card__icon {
       flex-shrink: 0;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       color: var(--color-gold);
-      transition: color 0.3s ease;
+      transition: color 0.4s ease;
+      stroke-width: 1.2;
     }
 
     .segment-card:hover .segment-card__icon {
@@ -1037,10 +1263,11 @@
     }
 
     .segment-card__label {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 15px;
-      line-height: 1.3;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 14.5px;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
       color: var(--color-offwhite);
     }
 
@@ -1078,47 +1305,83 @@
 
     .about__media-badge {
       position: absolute;
-      bottom: 16px;
-      left: 16px;
-      font-family: serif;
-      font-size: 28px;
+      bottom: 20px;
+      left: 20px;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 32px;
       color: var(--color-gold);
-      background: rgba(8, 27, 53, 0.85);
-      padding: 6px 14px;
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      border-radius: var(--radius-sm);
-      letter-spacing: 4px;
+      background: rgba(3, 10, 22, 0.78);
+      padding: 10px 18px;
+      border: 1px solid var(--color-hairline);
+      border-radius: 2px;
+      letter-spacing: 0.18em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .about__text p {
       text-align: left;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16.5px;
+      line-height: 1.85;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-5);
+    }
+
+    .about__text p:first-of-type::first-letter {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 56px;
+      color: var(--color-gold);
+      float: left;
+      line-height: 0.95;
+      margin: 6px 12px 0 0;
     }
 
     .about__mission {
-      border-left: 3px solid var(--color-gold);
-      padding: var(--space-4) var(--space-5);
-      background: rgba(212, 175, 55, 0.05);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin-top: var(--space-5) !important;
+      border-left: 2px solid var(--color-gold);
+      padding: var(--space-5) var(--space-6);
+      background: rgba(200, 162, 76, 0.04);
+      border-radius: 0 2px 2px 0;
+      margin-top: var(--space-8) !important;
+      font-style: italic;
+      font-family: var(--font-display) !important;
+      font-size: 19px !important;
+      color: var(--color-offwhite) !important;
+    }
+
+    .about__mission strong {
+      font-style: normal;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      display: block;
+      margin-bottom: var(--space-3);
     }
 
     .about__signoff {
-      margin-top: var(--space-6) !important;
-      padding-top: var(--space-5);
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      margin-top: var(--space-8) !important;
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-hairline);
       color: var(--color-text-secondary);
-      font-size: 15px;
-      line-height: 1.55;
+      font-size: 14.5px !important;
+      line-height: 1.7 !important;
     }
 
     .about__signoff strong {
       display: block;
       color: var(--color-gold);
       font-family: var(--font-heading);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      font-size: 13px;
-      margin-bottom: var(--space-2);
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: var(--space-3);
     }
 
     .mission {
@@ -1259,11 +1522,11 @@
     }
 
     .about-block {
-      background: var(--color-navy-medium);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: var(--radius-md);
-      padding: var(--space-8);
-      transition: all 0.3s ease;
+      background: linear-gradient(160deg, rgba(20, 43, 71, 0.4) 0%, rgba(11, 32, 56, 0.85) 100%);
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      padding: var(--space-12) var(--space-8) var(--space-8);
+      transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
@@ -1272,42 +1535,47 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      width: 4px;
-      height: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
       background: var(--color-gold);
-      transition: height 0.3s ease;
+      transition: width 0.5s ease;
     }
 
     .about-block:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+      border-color: rgba(200, 162, 76, 0.35);
     }
 
     .about-block:hover::before {
-      height: 80px;
+      width: 80%;
     }
 
     .about-block__icon {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       color: var(--color-gold);
       margin-bottom: var(--space-6);
+      stroke-width: 1.2;
     }
 
     .about-block h3 {
-      font-weight: 600;
-      font-size: 22px;
-      line-height: 1.3;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 26px;
+      line-height: 1.25;
+      letter-spacing: -0.005em;
       color: var(--color-offwhite);
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
     }
 
     .about-block p {
       font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.65;
+      font-weight: 300;
+      font-size: 15.5px;
+      line-height: 1.75;
       color: var(--color-text-secondary);
     }
 
@@ -1326,60 +1594,68 @@
     }
 
     .pillar {
-      background: var(--color-navy-medium);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: var(--radius-md);
-      padding: var(--space-8);
+      background: transparent;
+      border: 0;
+      border-top: 1px solid var(--color-hairline);
+      border-radius: 0;
+      padding: var(--space-8) var(--space-2) var(--space-6);
       position: relative;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
 
     .pillar::before {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 50px;
-      height: 4px;
+      top: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
       background: var(--color-gold);
-      transition: width 0.3s ease;
+      transition: width 0.5s ease;
     }
 
     .pillar:hover {
       transform: translateY(-4px);
-      border-color: rgba(212, 175, 55, 0.4);
-      box-shadow: var(--shadow-lg);
     }
 
     .pillar:hover::before {
-      width: 80px;
+      width: 100%;
+    }
+
+    .pillar:hover .pillar__num {
+      color: var(--color-gold);
+      opacity: 1;
     }
 
     .pillar__num {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 56px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 48px;
       line-height: 1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       color: var(--color-gold);
-      opacity: 0.4;
-      margin-bottom: var(--space-3);
+      opacity: 0.5;
+      margin-bottom: var(--space-6);
+      transition: all 0.4s ease;
     }
 
     .pillar__title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-gold);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: -0.005em;
+      text-transform: none;
+      color: var(--color-offwhite);
       margin-bottom: var(--space-4);
     }
 
     .pillar__text {
       font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.65;
+      font-weight: 300;
+      font-size: 15.5px;
+      line-height: 1.75;
       color: var(--color-text-secondary);
     }
 
@@ -1399,45 +1675,49 @@
 
     .testimonial {
       position: relative;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(212, 175, 55, 0.1);
-      border-radius: var(--radius-md);
-      padding: var(--space-8);
-      transition: all 0.3s ease;
+      background: linear-gradient(160deg, rgba(20, 43, 71, 0.45) 0%, rgba(11, 32, 56, 0.85) 100%);
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      padding: var(--space-10) var(--space-8) var(--space-8);
+      transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .testimonial:hover {
       transform: translateY(-4px);
-      border-color: rgba(212, 175, 55, 0.3);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(200, 162, 76, 0.35);
+      box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
     }
 
     .testimonial__quote {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 64px;
-      line-height: 1;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 96px;
+      line-height: 0.6;
       color: var(--color-gold);
-      opacity: 0.3;
+      opacity: 0.35;
       margin-bottom: var(--space-3);
-      height: 32px;
+      height: 40px;
+      letter-spacing: -0.04em;
     }
 
     .testimonial__text {
-      font-family: var(--font-body);
+      font-family: var(--font-display);
+      font-weight: 400;
       font-style: italic;
-      font-size: 17px;
-      line-height: 1.6;
+      font-size: 21px;
+      line-height: 1.55;
       color: var(--color-offwhite);
       margin-bottom: var(--space-6);
+      letter-spacing: -0.005em;
     }
 
     .testimonial__divider {
-      width: 40px;
-      height: 2px;
+      width: 32px;
+      height: 1px;
       background: var(--color-gold);
+      opacity: 0.5;
       border: 0;
-      margin-bottom: var(--space-4);
+      margin-bottom: var(--space-5);
     }
 
     .testimonial__author {
@@ -1463,17 +1743,21 @@
 
     .testimonial__name {
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--color-gold);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: var(--color-offwhite);
       line-height: 1.3;
     }
 
     .testimonial__role {
       font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--color-text-secondary);
-      line-height: 1.4;
+      font-weight: 300;
+      font-size: 12.5px;
+      letter-spacing: 0.04em;
+      color: var(--color-gold);
+      line-height: 1.5;
+      margin-top: 2px;
     }
 
     .testimonials__cta {
@@ -1490,12 +1774,12 @@
     }
 
     .result-card {
-      background: var(--color-navy-medium);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: var(--radius-md);
-      padding: var(--space-8);
+      background: linear-gradient(160deg, rgba(20, 43, 71, 0.45) 0%, rgba(11, 32, 56, 0.85) 100%);
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      padding: var(--space-12) var(--space-8) var(--space-8);
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
@@ -1504,45 +1788,53 @@
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
-      width: 60px;
-      height: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
       background: var(--color-gold);
-      transition: width 0.3s ease;
+      transition: width 0.5s ease;
     }
 
     .result-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(212, 175, 55, 0.4);
-      box-shadow: var(--shadow-lg);
+      border-color: rgba(200, 162, 76, 0.4);
+      box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
     }
 
     .result-card:hover::before {
-      width: 80px;
+      width: 80%;
     }
 
     .result-card__icon {
-      width: 56px;
-      height: 56px;
+      width: 48px;
+      height: 48px;
       color: var(--color-gold);
-      margin: 0 auto var(--space-4);
+      margin: 0 auto var(--space-5);
+      stroke-width: 1.2;
     }
 
     .result-card__sector {
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--color-gold);
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
     }
 
     .result-card__text {
       font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
+      font-weight: 300;
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--color-text-secondary);
+    }
+
+    .result-card__text strong {
       color: var(--color-offwhite);
+      font-weight: 600;
     }
 
     /* ============================================
@@ -1793,22 +2085,382 @@
     }
 
     .result-card__company {
-      font-family: var(--font-heading);
-      font-size: 19px;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
       color: var(--color-offwhite);
-      margin: var(--space-2) 0 var(--space-3);
-      line-height: 1.25;
+      margin: var(--space-3) 0 var(--space-4);
+      line-height: 1.2;
     }
 
     .result-card__metric {
-      margin-top: var(--space-4);
-      padding-top: var(--space-4);
-      border-top: 1px solid rgba(212, 175, 55, 0.15);
-      font-size: 13px;
+      margin-top: var(--space-5);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--color-hairline);
+      font-family: var(--font-heading);
+      font-size: 11.5px;
       color: var(--color-gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ============================================
+     CONVERSOR DE CÂMBIO
+     ============================================ */
+    .converter {
+      max-width: 880px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, rgba(20, 43, 71, 0.55) 0%, rgba(11, 32, 56, 0.95) 100%);
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      padding: var(--space-12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .converter::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+      opacity: 0.5;
+    }
+
+    .converter__form {
+      margin-bottom: var(--space-8);
+    }
+
+    .converter__row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr auto 1fr;
+      gap: var(--space-4);
+      align-items: end;
+      margin-bottom: var(--space-10);
+    }
+
+    .converter__field {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .converter__label {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .converter__input,
+    .converter__select {
+      height: 56px;
+      padding: 14px 18px;
+      border-radius: 2px;
+      border: 1px solid var(--color-hairline-soft);
+      background: rgba(3, 10, 22, 0.55);
+      color: var(--color-offwhite);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      transition: border 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+      width: 100%;
+    }
+
+    .converter__input {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: -0.005em;
+      color: var(--color-offwhite);
+    }
+
+    .converter__input:focus,
+    .converter__select:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      background: rgba(3, 10, 22, 0.75);
+      box-shadow: 0 0 0 4px rgba(200, 162, 76, 0.10);
+    }
+
+    .converter__select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C8A24C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 16px;
+      padding-right: 44px;
+      cursor: pointer;
+    }
+
+    .converter__select option {
+      background: var(--color-navy-medium);
+      color: var(--color-offwhite);
+    }
+
+    .converter__swap {
+      width: 48px;
+      height: 56px;
+      border: 1px solid var(--color-hairline);
+      background: transparent;
+      color: var(--color-gold);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 0;
+      align-self: end;
+    }
+
+    .converter__swap svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .converter__swap:hover {
+      background: rgba(200, 162, 76, 0.08);
+      border-color: var(--color-gold);
+    }
+
+    .converter__swap:hover svg {
+      transform: rotate(180deg);
+    }
+
+    .converter__result {
+      text-align: center;
+      padding: var(--space-10) var(--space-6);
+      border-top: 1px solid var(--color-hairline);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .converter__result-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    .converter__result-value {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 64px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--color-gold);
+      margin-bottom: var(--space-4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .converter__rate {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--color-text-secondary);
       letter-spacing: 0.04em;
-      font-weight: 600;
+    }
+
+    .converter__footer {
+      text-align: center;
+      margin-top: var(--space-8);
+    }
+
+    .converter__disclaimer {
+      margin-top: var(--space-5);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--color-text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================
+     CASES (formato editorial — caso a caso)
+     ============================================ */
+    .cases-list {
+      display: flex;
+      flex-direction: column;
+      max-width: 1080px;
+      margin: 0 auto var(--space-12);
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: var(--space-12);
+      align-items: start;
+      padding: var(--space-12) 0;
+      border-bottom: 1px solid var(--color-hairline);
+      position: relative;
+    }
+
+    .case:first-of-type {
+      padding-top: 0;
+    }
+
+    .case:last-of-type {
+      border-bottom: 0;
+    }
+
+    .case__index {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 128px;
+      line-height: 0.85;
+      color: var(--color-gold);
+      letter-spacing: -0.04em;
+      position: sticky;
+      top: 140px;
+    }
+
+    .case__index::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--color-gold);
+      margin-top: var(--space-6);
+      opacity: 0.5;
+    }
+
+    .case__body {
+      position: relative;
+    }
+
+    .case__meta {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--space-4);
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+    }
+
+    .case__sector {
+      color: var(--color-gold);
+    }
+
+    .case__location {
+      color: var(--color-text-muted);
+      margin-left: var(--space-4);
+      padding-left: var(--space-4);
+      border-left: 1px solid var(--color-hairline);
+    }
+
+    .case__company {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--color-offwhite);
+      margin-bottom: var(--space-5);
+    }
+
+    .case__headline {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.5;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-10);
+      max-width: 640px;
+    }
+
+    .case__headline em {
+      font-style: italic;
+      color: var(--color-gold);
+      font-weight: 500;
+    }
+
+    .case__story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      margin-bottom: var(--space-10);
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--color-hairline);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .case__story-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-4);
+    }
+
+    .case__story-block p {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+    }
+
+    .case__metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .case__metric {
+      padding-right: var(--space-6);
+      border-right: 1px solid var(--color-hairline);
+    }
+
+    .case__metric:last-child {
+      border-right: 0;
+      padding-right: 0;
+    }
+
+    .case__metric-value {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1;
+      color: var(--color-gold);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
+    }
+
+    .case__metric-label {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .cases__cta {
+      text-align: center;
+      margin-top: var(--space-12);
     }
 
     /* ============================================
@@ -1866,10 +2518,10 @@
 
     /* form */
     .form {
-      background: var(--color-navy-medium);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: var(--radius-md);
-      padding: var(--space-8);
+      background: linear-gradient(160deg, rgba(20, 43, 71, 0.5) 0%, rgba(11, 32, 56, 0.92) 100%);
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      padding: var(--space-10) var(--space-8);
     }
 
     .form__field {
@@ -1879,12 +2531,12 @@
     .form__label {
       display: block;
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.05em;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--color-offwhite);
-      margin-bottom: var(--space-2);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-3);
     }
 
     .form__label .req {
@@ -1896,14 +2548,15 @@
     .form__textarea {
       width: 100%;
       height: 56px;
-      padding: 16px 20px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(184, 197, 214, 0.2);
-      background: rgba(255, 255, 255, 0.03);
+      padding: 16px 18px;
+      border-radius: 2px;
+      border: 1px solid var(--color-hairline-soft);
+      background: rgba(3, 10, 22, 0.4);
       color: var(--color-offwhite);
       font-family: var(--font-body);
-      font-size: 16px;
-      transition: border 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 300;
+      font-size: 15.5px;
+      transition: border 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
     }
 
     .form__input::placeholder,
@@ -1973,41 +2626,41 @@
      ============================================ */
     .wa-float {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 60px;
-      height: 60px;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
       background: var(--color-whatsapp);
       color: #FFFFFF;
       border-radius: var(--radius-full);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
       z-index: 999;
-      transition: transform 0.3s ease;
-      animation: wa-pulse 3s ease-in-out infinite;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      animation: wa-pulse 4s ease-in-out infinite;
     }
 
     .wa-float:hover {
       color: #FFFFFF;
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
 
     .wa-float svg {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
     }
 
     @keyframes wa-pulse {
 
       0%,
       100% {
-        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.5);
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35), 0 0 0 0 rgba(37, 211, 102, 0.35);
       }
 
       50% {
-        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 14px rgba(37, 211, 102, 0);
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35), 0 0 0 16px rgba(37, 211, 102, 0);
       }
     }
 
@@ -2020,12 +2673,14 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: var(--color-navy-deep);
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(3, 10, 22, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--color-hairline);
       padding: var(--space-3) var(--space-4);
       z-index: 998;
-      box-shadow: 0 -4px 16px rgba(5, 15, 31, 0.5);
-      transition: opacity 0.25s ease;
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+      transition: opacity 0.4s ease;
     }
 
     .sticky-cta-mobile .btn {
@@ -2038,7 +2693,24 @@
     .footer {
       background: var(--color-navy-deep);
       padding: var(--space-20) 0 var(--space-8);
-      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      border-top: 1px solid var(--color-hairline);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '飞鸿';
+      position: absolute;
+      right: -40px;
+      bottom: -80px;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 280px;
+      color: var(--color-gold);
+      opacity: 0.025;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      line-height: 1;
     }
 
     .footer__top {
@@ -2046,46 +2718,51 @@
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: var(--space-12);
       margin-bottom: var(--space-16);
+      position: relative;
+      z-index: 1;
     }
 
     .footer__brand h3 {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 22px;
-      letter-spacing: 0.18em;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 28px;
+      letter-spacing: 0.06em;
       color: var(--color-offwhite);
-      text-transform: uppercase;
+      text-transform: none;
       margin-bottom: var(--space-2);
     }
 
     .footer__brand h3 span {
       color: var(--color-gold);
+      font-style: italic;
     }
 
     .footer__logo {
       display: block;
-      width: 240px;
+      width: 220px;
       max-width: 100%;
       height: auto;
       margin-bottom: var(--space-4);
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 2px;
+      border: 1px solid var(--color-hairline);
     }
 
     .footer__slogan {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 0.1em;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.04em;
       color: var(--color-gold);
-      text-transform: uppercase;
-      margin: var(--space-6) 0 var(--space-4);
+      text-transform: none;
+      margin: var(--space-6) 0 var(--space-5);
     }
 
     .footer__legal {
       font-family: var(--font-body);
+      font-weight: 300;
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--color-text-muted);
     }
 
@@ -2093,14 +2770,21 @@
       margin-bottom: var(--space-2);
     }
 
+    .footer__legal strong {
+      color: var(--color-text-secondary);
+      font-weight: 600;
+    }
+
     .footer__col h4 {
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.15em;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--color-gold);
       margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-hairline);
     }
 
     .footer__list li {
@@ -2109,32 +2793,39 @@
 
     .footer__list a {
       font-family: var(--font-body);
+      font-weight: 300;
       font-size: 14px;
       color: var(--color-text-secondary);
-      transition: color 0.3s ease, padding-left 0.3s ease;
+      transition: color 0.4s ease, padding-left 0.4s ease;
       display: inline-block;
     }
 
     .footer__list a:hover {
       color: var(--color-gold);
-      padding-left: 4px;
+      padding-left: 6px;
     }
 
     .footer__bottom {
-      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      border-top: 1px solid var(--color-hairline);
       padding-top: var(--space-8);
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .footer__credit {
       font-family: var(--font-body);
-      font-size: 13px;
+      font-weight: 300;
+      font-size: 12.5px;
+      letter-spacing: 0.06em;
       color: var(--color-text-muted);
     }
 
     .footer__credit strong {
       color: var(--color-gold);
-      font-weight: 700;
+      font-weight: 600;
+      font-family: var(--font-heading);
+      letter-spacing: 0.16em;
     }
 
     /* ============================================
@@ -2169,11 +2860,15 @@
       }
 
       .hero {
-        padding: 160px 40px var(--space-20);
+        padding: 180px 40px var(--space-20);
       }
 
       .hero h1 {
-        font-size: 48px;
+        font-size: 54px;
+      }
+
+      .hero::after {
+        font-size: 200px;
       }
 
       .section {
@@ -2182,7 +2877,7 @@
 
       .section__title,
       .mission h2 {
-        font-size: 38px;
+        font-size: 42px;
       }
 
       .stats__grid {
@@ -2192,6 +2887,54 @@
       .services-grid,
       .results-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .converter {
+        padding: var(--space-10) var(--space-8);
+      }
+
+      .converter__row {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+      }
+
+      .converter__field--amount {
+        grid-column: 1 / -1;
+      }
+
+      .converter__swap {
+        grid-column: 1 / -1;
+        width: 100%;
+        height: 44px;
+      }
+
+      .converter__swap svg {
+        transform: rotate(90deg);
+      }
+
+      .converter__swap:hover svg {
+        transform: rotate(270deg);
+      }
+
+      .case {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+
+      .case__index {
+        position: static;
+        font-size: 88px;
+        line-height: 0.9;
+      }
+
+      .case__index::after {
+        width: 40px;
+        margin-top: var(--space-4);
+      }
+
+      .case__story {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
       }
 
       .content-cards {
@@ -2341,18 +3084,32 @@
       }
 
       .hero {
-        padding: 120px var(--container-padding-mobile) var(--space-16);
+        padding: 130px var(--container-padding-mobile) var(--space-16);
         min-height: auto;
       }
 
       .hero h1 {
-        font-size: 36px;
-        line-height: 1.15;
+        font-size: 40px;
+        line-height: 1.1;
       }
 
       .hero__subtext {
-        font-size: 16px;
+        font-size: 17px;
         margin-bottom: var(--space-8);
+      }
+
+      .hero::after {
+        font-size: 140px;
+        opacity: 0.04;
+      }
+
+      .hero__credentials {
+        gap: var(--space-6);
+        margin-top: var(--space-12);
+      }
+
+      .hero__credential-value {
+        font-size: 24px;
       }
 
       .hero__ctas {
@@ -2371,15 +3128,21 @@
 
       .stats__grid {
         grid-template-columns: 1fr;
-        gap: var(--space-4);
+        gap: 0;
       }
 
       .stat-card {
         padding: var(--space-6);
+        border-right: 0;
+        border-bottom: 1px solid var(--color-hairline);
+      }
+
+      .stat-card:last-child {
+        border-bottom: 0;
       }
 
       .stat-card__value {
-        font-size: 44px;
+        font-size: 52px;
       }
 
       .section {
@@ -2392,7 +3155,7 @@
 
       .section__title,
       .mission h2 {
-        font-size: 28px;
+        font-size: 32px;
         line-height: 1.2;
       }
 
@@ -2409,6 +3172,77 @@
       .results-grid {
         grid-template-columns: 1fr;
         gap: var(--space-6);
+      }
+
+      .converter {
+        padding: var(--space-8) var(--space-5);
+      }
+
+      .converter__row {
+        grid-template-columns: 1fr;
+        margin-bottom: var(--space-8);
+      }
+
+      .converter__field--amount {
+        grid-column: auto;
+      }
+
+      .converter__swap {
+        grid-column: auto;
+        width: 100%;
+      }
+
+      .converter__result {
+        padding: var(--space-8) var(--space-3);
+      }
+
+      .converter__result-value {
+        font-size: 44px;
+      }
+
+      .converter__input {
+        font-size: 20px;
+      }
+
+      .case {
+        padding: var(--space-10) 0;
+      }
+
+      .case__index {
+        font-size: 72px;
+      }
+
+      .case__company {
+        font-size: 32px;
+      }
+
+      .case__headline {
+        font-size: 18px;
+      }
+
+      .case__metrics {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .case__metric {
+        border-right: 0;
+        border-bottom: 1px solid var(--color-hairline);
+        padding-right: 0;
+        padding: var(--space-5) 0;
+      }
+
+      .case__metric:first-child {
+        padding-top: 0;
+      }
+
+      .case__metric:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .case__metric-value {
+        font-size: 32px;
       }
 
       .content-cards {
@@ -2595,7 +3429,7 @@
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="hero__inner">
         <div class="hero__content">
-          <span class="eyebrow">Bem-vindo à FEIHONG</span>
+          <span class="eyebrow">FEIHONG · 飞鸿 Consultoria</span>
           <h1 id="hero-title">Consultoria Estratégica de <span class="highlight">Importação China–Brasil</span></h1>
           <p class="hero__subtext">Mais do que conectar empresas à China — planejamos cada operação com precisão para
             reduzir custos, eliminar riscos e maximizar sua margem de lucro.</p>
@@ -2603,6 +3437,20 @@
             <a href="#contato" class="btn btn--primary btn--lg">Falar com um Consultor</a>
             <a href="#servicos" class="btn btn--ghost">Conheça nossos serviços <span class="arrow"
                 aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero__credentials" aria-label="Credenciais FEIHONG">
+            <div class="hero__credential">
+              <span class="hero__credential-value">+18 anos</span>
+              <span class="hero__credential-label">Experiência China–Brasil</span>
+            </div>
+            <div class="hero__credential">
+              <span class="hero__credential-value">+300</span>
+              <span class="hero__credential-label">Operações consultadas</span>
+            </div>
+            <div class="hero__credential">
+              <span class="hero__credential-value">até 40%</span>
+              <span class="hero__credential-label">Economia média por cliente</span>
+            </div>
           </div>
         </div>
       </div>
@@ -2639,6 +3487,74 @@
     </section>
 
     <!-- ============================================
+       CONVERSOR DE CÂMBIO
+       ============================================ -->
+    <section class="section" id="cambio" aria-labelledby="cambio-title">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="eyebrow">Ferramenta</span>
+          <h2 id="cambio-title" class="section__title">Conversor de <em>Câmbio</em></h2>
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
+          <p class="section__subtitle">Cotação em tempo real entre Real, Dólar e Yuan — referência rápida para
+            simular custos da sua próxima operação.</p>
+        </div>
+
+        <div class="converter reveal">
+          <form class="converter__form" id="converterForm" novalidate aria-label="Conversor de câmbio">
+            <div class="converter__row">
+              <div class="converter__field converter__field--amount">
+                <label class="converter__label" for="conv-amount">Valor</label>
+                <input class="converter__input" type="text" id="conv-amount" inputmode="decimal" value="1.000,00"
+                  autocomplete="off" aria-describedby="convResult" />
+              </div>
+
+              <div class="converter__field">
+                <label class="converter__label" for="conv-from">De</label>
+                <select class="converter__select" id="conv-from">
+                  <option value="USD" selected>USD — Dólar</option>
+                  <option value="CNY">CNY — Yuan</option>
+                  <option value="BRL">BRL — Real</option>
+                </select>
+              </div>
+
+              <button type="button" class="converter__swap" id="convSwap" aria-label="Inverter moedas">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 3 L3 7 L7 11" />
+                  <path d="M3 7 H17" />
+                  <path d="M17 21 L21 17 L17 13" />
+                  <path d="M21 17 H7" />
+                </svg>
+              </button>
+
+              <div class="converter__field">
+                <label class="converter__label" for="conv-to">Para</label>
+                <select class="converter__select" id="conv-to">
+                  <option value="USD">USD — Dólar</option>
+                  <option value="CNY">CNY — Yuan</option>
+                  <option value="BRL" selected>BRL — Real</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="converter__result" aria-live="polite">
+              <span class="converter__result-label">Resultado</span>
+              <div class="converter__result-value" id="convResult">R$ —</div>
+              <div class="converter__rate" id="convRate">Aguardando cotação em tempo real…</div>
+            </div>
+          </form>
+
+          <div class="converter__footer">
+            <a href="#contato" class="btn btn--primary">Simular minha importação <span class="arrow"
+                aria-hidden="true">→</span></a>
+            <p class="converter__disclaimer">Cotações de referência via AwesomeAPI · valores indicativos, não
+              vinculantes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
        SERVIÇOS
        ============================================ -->
     <section class="section" id="servicos" aria-labelledby="servicos-title">
@@ -2646,7 +3562,7 @@
         <div class="section__header reveal">
           <span class="eyebrow">Nossos serviços</span>
           <h2 id="servicos-title" class="section__title">Serviços</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="section__subtitle">Uma consultoria completa para quem quer importar com inteligência, segurança e
             resultado.</p>
         </div>
@@ -2747,7 +3663,7 @@
         <div class="mission__content reveal">
           <span class="eyebrow">Nossa missão</span>
           <h2 id="missao-title">Transformamos empresas que importam em líderes do seu mercado.</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="mission__text">Nossa missão é clara: elevar o nível estratégico das operações de importação no
             Brasil. Cada cliente atendido representa uma empresa que decidiu parar de improvisar e começar a crescer com
             inteligência global.</p>
@@ -2766,7 +3682,7 @@
         <div class="section__header reveal">
           <span class="eyebrow">Setores atendidos</span>
           <h2 id="segmentos-title" class="section__title">Segmentos que atendemos</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="section__subtitle">Atuamos com empresas de diferentes setores que buscam competitividade por meio da
             importação direta da China.</p>
         </div>
@@ -2890,7 +3806,7 @@
         <div class="section__header reveal">
           <span class="eyebrow">Quem somos</span>
           <h2 id="sobre-title" class="section__title">Conheça a FEIHONG</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="section__subtitle">Construída para quem leva a importação a sério.</p>
         </div>
 
@@ -2977,7 +3893,7 @@
         <div class="section__header reveal">
           <span class="eyebrow">Como funciona</span>
           <h2 id="metodo-title" class="section__title">O Método FEIHONG</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="section__subtitle">Quatro pilares que sustentam cada operação bem-sucedida.</p>
         </div>
 
@@ -3024,7 +3940,7 @@
         <div class="section__header reveal">
           <span class="eyebrow">Resultados reais</span>
           <h2 id="depoimentos-title" class="section__title">O que nossos clientes dizem</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="section__subtitle">Empresas que escolheram importar com estratégia — e colheram os resultados.</p>
         </div>
 
@@ -3081,62 +3997,279 @@
     </section>
 
     <!-- ============================================
-       EMPRESAS / RESULTADOS
+       EMPRESAS / CASES (formato editorial)
        ============================================ -->
     <section class="section section--alt" id="empresas" aria-labelledby="empresas-title">
       <div class="container">
         <div class="section__header reveal">
           <span class="eyebrow">Cases de resultado</span>
-          <h2 id="empresas-title" class="section__title">Empresas que importam com inteligência</h2>
-          <hr class="divider-gold" />
-          <p class="section__subtitle">De pequenas operações em crescimento a empresas consolidadas — a FEIHONG já fez
-            parte da jornada de importação de negócios como estes.</p>
+          <h2 id="empresas-title" class="section__title">Empresas que importam com <em>inteligência</em></h2>
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
+          <p class="section__subtitle">Três casos reais que mostram como uma operação bem planejada transforma o
+            resultado — do sourcing à margem líquida.</p>
         </div>
 
-        <div class="results-grid">
-          <article class="result-card reveal">
-            <svg class="result-card__icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 8 L26 4 L40 8 V14 H16 Z" />
-              <path d="M12 14 H44 V46 H12 Z" />
-              <line x1="20" y1="22" x2="36" y2="22" />
-              <line x1="20" y1="30" x2="36" y2="30" />
-              <line x1="20" y1="38" x2="28" y2="38" />
-            </svg>
-            <div class="result-card__sector">Ferramentas e Construção</div>
-            <h3 class="result-card__company">Al Cargo</h3>
-            <p class="result-card__text">Redução de <strong>34% no custo de aquisição</strong> após reestruturação
-              completa do sourcing e troca de 4 fornecedores em Yiwu e Ningbo.</p>
-            <div class="result-card__metric">2 containers/mês &middot; São Paulo/SP</div>
+        <div class="cases-list">
+
+          <!-- Caso 01 -->
+          <article class="case reveal" aria-labelledby="case-01-title">
+            <div class="case__index" aria-hidden="true">01</div>
+            <div class="case__body">
+              <div class="case__meta">
+                <span class="case__sector">Ferramentas e Construção</span>
+                <span class="case__location">São Paulo/SP</span>
+              </div>
+              <h3 id="case-01-title" class="case__company">Al Cargo</h3>
+              <p class="case__headline">Redução de <em>34%</em> no custo de aquisição após consolidação estratégica de
+                fornecedores em Yiwu e Ningbo.</p>
+
+              <div class="case__story">
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Desafio</h4>
+                  <p>Quatro fornecedores fragmentados em diferentes regiões da China, custo crescente trimestre a
+                    trimestre e variação de qualidade entre lotes comprometendo o ticket médio da operação.</p>
+                </div>
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Abordagem</h4>
+                  <p>Auditoria presencial em Yiwu e Ningbo, renegociação completa de condições comerciais e
+                    consolidação para dois fornecedores estratégicos com FOB unificado e SLA contratual.</p>
+                </div>
+              </div>
+
+              <div class="case__metrics" role="list" aria-label="Resultados do caso 01">
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">-34%</div>
+                  <div class="case__metric-label">Custo de aquisição</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">2/mês</div>
+                  <div class="case__metric-label">Cadência de containers</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">4 → 2</div>
+                  <div class="case__metric-label">Fornecedores estratégicos</div>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <article class="result-card reveal">
-            <svg class="result-card__icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="6" y="20" width="44" height="26" rx="2" />
-              <path d="M6 28 H50 M16 20 V46 M28 20 V46 M40 20 V46" />
-              <path d="M14 14 L20 8 L36 8 L42 14" />
-            </svg>
-            <div class="result-card__sector">Utilidades Domésticas</div>
-            <h3 class="result-card__company">Kadosh Digital</h3>
-            <p class="result-card__text">Primeiro container importado com <strong>lucro líquido de 41%</strong> já na
-              segunda operação, após mentoria 1:1 e auditoria de fornecedor.</p>
-            <div class="result-card__metric">Operação inaugural &middot; Rio de Janeiro/RJ</div>
+          <!-- Caso 02 -->
+          <article class="case reveal" aria-labelledby="case-02-title">
+            <div class="case__index" aria-hidden="true">02</div>
+            <div class="case__body">
+              <div class="case__meta">
+                <span class="case__sector">Utilidades Domésticas</span>
+                <span class="case__location">Rio de Janeiro/RJ</span>
+              </div>
+              <h3 id="case-02-title" class="case__company">Kadosh Digital</h3>
+              <p class="case__headline"><em>41%</em> de margem líquida já na segunda operação inaugural — sem
+                retrabalho aduaneiro.</p>
+
+              <div class="case__story">
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Desafio</h4>
+                  <p>Operação inaugural, equipe sem experiência prévia em comércio exterior e capital de giro limitado
+                    para absorver erros tributários ou logísticos no primeiro container.</p>
+                </div>
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Abordagem</h4>
+                  <p>Mentoria 1:1 ao longo de 90 dias, auditoria documental completa do fornecedor chinês e
+                    planejamento tributário com classificação NCM otimizada antes do embarque.</p>
+                </div>
+              </div>
+
+              <div class="case__metrics" role="list" aria-label="Resultados do caso 02">
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">41%</div>
+                  <div class="case__metric-label">Margem líquida</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">1ª op</div>
+                  <div class="case__metric-label">Operação rentável</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">Zero</div>
+                  <div class="case__metric-label">Retrabalho aduaneiro</div>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <article class="result-card reveal">
-            <svg class="result-card__icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="28" cy="28" r="20" />
-              <path d="M28 12 V28 L38 34" />
-              <path d="M14 28 H10 M46 28 H42" />
-            </svg>
-            <div class="result-card__sector">Fitness e Academia</div>
-            <h3 class="result-card__company">Ultra Fast </h3>
-            <p class="result-card__text">Fornecedor homologado em <strong>3 semanas</strong> com auditoria presencial em
-              Guangzhou. Certificação INMETRO obtida na primeira tentativa.</p>
-            <div class="result-card__metric">Equipamentos profissionais &middot; Belo Horizonte/MG</div>
+          <!-- Caso 03 -->
+          <article class="case reveal" aria-labelledby="case-03-title">
+            <div class="case__index" aria-hidden="true">03</div>
+            <div class="case__body">
+              <div class="case__meta">
+                <span class="case__sector">Fitness e Equipamentos</span>
+                <span class="case__location">Belo Horizonte/MG</span>
+              </div>
+              <h3 id="case-03-title" class="case__company">Ultra Fast</h3>
+              <p class="case__headline">Fornecedor homologado em <em>3 semanas</em> e INMETRO aprovado já na primeira
+                tentativa.</p>
+
+              <div class="case__story">
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Desafio</h4>
+                  <p>Lançamento de linha profissional dependia de certificação INMETRO; prazo apertado para a
+                    temporada e necessidade de validar capacidade produtiva real do fornecedor antes de comprometer
+                    capital.</p>
+                </div>
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Abordagem</h4>
+                  <p>Auditoria presencial em Guangzhou com a equipe técnica do cliente, alinhamento de spec sheet
+                    bilíngue e acompanhamento do processo de homologação junto ao OCP brasileiro.</p>
+                </div>
+              </div>
+
+              <div class="case__metrics" role="list" aria-label="Resultados do caso 03">
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">3 sem.</div>
+                  <div class="case__metric-label">Homologação completa</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">1ª tent.</div>
+                  <div class="case__metric-label">INMETRO aprovado</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">100%</div>
+                  <div class="case__metric-label">Spec compliance</div>
+                </div>
+              </div>
+            </div>
           </article>
+
+          <!-- Caso 04 -->
+          <article class="case reveal" aria-labelledby="case-04-title">
+            <div class="case__index" aria-hidden="true">04</div>
+            <div class="case__body">
+              <div class="case__meta">
+                <span class="case__sector">Energias Renováveis e Solar</span>
+                <span class="case__location">Curitiba/PR</span>
+              </div>
+              <h3 id="case-04-title" class="case__company">Voltec Solar</h3>
+              <p class="case__headline">Primeira importação de painéis com dupla certificação aprovada e <em>18%</em>
+                de redução no landed cost.</p>
+
+              <div class="case__story">
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Desafio</h4>
+                  <p>Importação de painéis fotovoltaicos e inversores exigia dupla certificação (INMETRO + ANEEL),
+                    com risco alto de não-conformidade que poderia inviabilizar um container inteiro de mercadoria.</p>
+                </div>
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Abordagem</h4>
+                  <p>Pré-qualificação de sete fabricantes em Jiangsu, validação técnica das fichas com engenheiros
+                    do cliente e emissão antecipada dos laudos junto a OCP habilitado antes do embarque.</p>
+                </div>
+              </div>
+
+              <div class="case__metrics" role="list" aria-label="Resultados do caso 04">
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">-18%</div>
+                  <div class="case__metric-label">Landed cost</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">Zero</div>
+                  <div class="case__metric-label">Não-conformidades INMETRO</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">7 → 1</div>
+                  <div class="case__metric-label">Fábrica homologada</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Caso 05 -->
+          <article class="case reveal" aria-labelledby="case-05-title">
+            <div class="case__index" aria-hidden="true">05</div>
+            <div class="case__body">
+              <div class="case__meta">
+                <span class="case__sector">Autopeças e Acessórios</span>
+                <span class="case__location">Joinville/SC</span>
+              </div>
+              <h3 id="case-05-title" class="case__company">Mota Auto</h3>
+              <p class="case__headline">De 90 para <em>45 dias</em> de cadência e ruptura de estoque reduzida em
+                <em>62%</em>.</p>
+
+              <div class="case__story">
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Desafio</h4>
+                  <p>Cadência de reposição de 90 dias gerava ruptura recorrente de SKUs de alto giro, prejudicando
+                    o atendimento à rede de revendas regionais e comprometendo o ticket B2B trimestral.</p>
+                </div>
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Abordagem</h4>
+                  <p>Mapeamento ABC dos 480 SKUs ativos, contratos-quadro semestrais com três fornecedores em
+                    Guangzhou e roteirização logística com escalas otimizadas pelo Porto de Itapoá.</p>
+                </div>
+              </div>
+
+              <div class="case__metrics" role="list" aria-label="Resultados do caso 05">
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">45 dias</div>
+                  <div class="case__metric-label">Cadência de reposição</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">-62%</div>
+                  <div class="case__metric-label">Ruptura de estoque</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">3</div>
+                  <div class="case__metric-label">Contratos-quadro semestrais</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Caso 06 -->
+          <article class="case reveal" aria-labelledby="case-06-title">
+            <div class="case__index" aria-hidden="true">06</div>
+            <div class="case__body">
+              <div class="case__meta">
+                <span class="case__sector">Produtos para Pet</span>
+                <span class="case__location">Goiânia/GO</span>
+              </div>
+              <h3 id="case-06-title" class="case__company">PetVida</h3>
+              <p class="case__headline">Linha white-label própria em <em>6 meses</em> e <em>+52%</em> de margem
+                contra distribuidor nacional.</p>
+
+              <div class="case__story">
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Desafio</h4>
+                  <p>Operação dependia de distribuidor brasileiro com margem comprimida e sem identidade de marca;
+                    havia urgência em construir linha proprietária sem comprometer o caixa da operação existente.</p>
+                </div>
+                <div class="case__story-block">
+                  <h4 class="case__story-title">Abordagem</h4>
+                  <p>Sourcing de quatro fornecedores em Yangzhou e Wenzhou para portfólio inicial de 28 SKUs,
+                    desenvolvimento de embalagem com identidade própria, registro junto ao MAPA e estruturação
+                    tributária do regime importador-distribuidor.</p>
+                </div>
+              </div>
+
+              <div class="case__metrics" role="list" aria-label="Resultados do caso 06">
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">+52%</div>
+                  <div class="case__metric-label">Margem por unidade</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">6 meses</div>
+                  <div class="case__metric-label">Time-to-market</div>
+                </div>
+                <div class="case__metric" role="listitem">
+                  <div class="case__metric-value">28 SKUs</div>
+                  <div class="case__metric-label">Linha proprietária</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="cases__cta reveal">
+          <a href="#contato" class="btn btn--primary">Apresentar meu cenário <span class="arrow"
+              aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -3149,7 +4282,7 @@
         <div class="section__header reveal">
           <span class="eyebrow">Inteligência de mercado</span>
           <h2 id="conteudos-title" class="section__title">Conteúdos</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="section__subtitle">Inteligência de mercado para quem importa com seriedade.</p>
         </div>
 
@@ -3260,7 +4393,7 @@
         <div class="section__header reveal">
           <span class="eyebrow">Contato</span>
           <h2 id="contato-title" class="section__title">Fale com a FEIHONG</h2>
-          <hr class="divider-gold" />
+          <div class="divider-gold--ornament" aria-hidden="true"><span></span></div>
           <p class="section__subtitle">Pronto para dar o próximo passo na sua operação de importação?</p>
         </div>
 
