@@ -6124,7 +6124,10 @@
       // Currency ticker (cotações: USD/BRL, CNY/BRL, USD/CNY)
       var ticker = document.getElementById('ticker');
       if (ticker) {
-        var TICKER_API = 'https://economia.awesomeapi.com.br/json/last/USD-BRL,CNY-BRL,USD-CNY';
+        var TICKER_APIS = [
+          'https://open.er-api.com/v6/latest/USD',
+          'https://api.exchangerate-api.com/v4/latest/USD'
+        ];
         var TICKER_REFRESH_MS = 5 * 60 * 1000;
 
         function tickerFormatBid(value, prefix) {
@@ -6133,38 +6136,46 @@
           return prefix + ' ' + n.toFixed(4).replace('.', ',');
         }
 
-        function tickerFormatPct(value) {
-          var n = parseFloat(value);
-          if (!isFinite(n)) return '—';
-          var sign = n >= 0 ? '+' : '';
-          return sign + n.toFixed(2).replace('.', ',') + '%';
-        }
-
-        function tickerUpdateItem(key, prefix, data) {
+        function tickerUpdateItem(key, prefix, rate) {
           var item = ticker.querySelector('[data-pair="' + key + '"]');
-          if (!item || !data) return;
+          if (!item) return;
           var bidEl = item.querySelector('[data-bid]');
           var pctEl = item.querySelector('[data-pct]');
-          if (bidEl) bidEl.textContent = tickerFormatBid(data.bid, prefix);
+          if (bidEl) bidEl.textContent = tickerFormatBid(rate, prefix);
           if (pctEl) {
-            var pct = parseFloat(data.pctChange);
-            pctEl.textContent = tickerFormatPct(data.pctChange);
-            pctEl.classList.toggle('is-up', isFinite(pct) && pct >= 0);
-            pctEl.classList.toggle('is-down', isFinite(pct) && pct < 0);
+            pctEl.textContent = '';
+            pctEl.style.display = 'none';
           }
         }
 
-        function tickerFetchRates() {
-          fetch(TICKER_API, { cache: 'no-store' })
+        function tickerTryFetch(index) {
+          if (index >= TICKER_APIS.length) return Promise.reject();
+          return fetch(TICKER_APIS[index], { cache: 'no-store' })
             .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
             .then(function (data) {
-              tickerUpdateItem('USDBRL', 'R$', data.USDBRL);
-              tickerUpdateItem('CNYBRL', 'R$', data.CNYBRL);
-              tickerUpdateItem('USDCNY', '¥', data.USDCNY);
+              var rates = data && data.rates;
+              if (!rates || !isFinite(parseFloat(rates.BRL)) || !isFinite(parseFloat(rates.CNY))) {
+                return Promise.reject();
+              }
+              return rates;
+            })
+            .catch(function () { return tickerTryFetch(index + 1); });
+        }
 
-              if (data.USDBRL && isFinite(parseFloat(data.USDBRL.bid))) feihongRates.USDBRL = parseFloat(data.USDBRL.bid);
-              if (data.CNYBRL && isFinite(parseFloat(data.CNYBRL.bid))) feihongRates.CNYBRL = parseFloat(data.CNYBRL.bid);
-              if (data.USDCNY && isFinite(parseFloat(data.USDCNY.bid))) feihongRates.USDCNY = parseFloat(data.USDCNY.bid);
+        function tickerFetchRates() {
+          tickerTryFetch(0)
+            .then(function (rates) {
+              var usdBrl = parseFloat(rates.BRL);
+              var usdCny = parseFloat(rates.CNY);
+              var cnyBrl = usdBrl / usdCny;
+
+              tickerUpdateItem('USDBRL', 'R$', usdBrl);
+              tickerUpdateItem('CNYBRL', 'R$', cnyBrl);
+              tickerUpdateItem('USDCNY', '¥', usdCny);
+
+              feihongRates.USDBRL = usdBrl;
+              feihongRates.CNYBRL = cnyBrl;
+              feihongRates.USDCNY = usdCny;
               feihongRates.updated = new Date();
 
               convUpdate();
